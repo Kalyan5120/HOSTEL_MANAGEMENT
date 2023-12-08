@@ -59,10 +59,10 @@ class cust_form(forms.ModelForm):
             raise forms.ValidationError('password and repassword should be same')
         return pswrd
         
-    def clean_aadhar(self):
-        aadhar=self.cleaned_data['aadhar']
-        if len(aadhar)!=16:
-            raise forms.ValidationError('aadhar should contain 16 numbers')
+    def clean_c_aadhaar(self):
+        aadhar=self.cleaned_data['c_aadhaar']
+        if len(str(aadhar))!=12:
+            raise forms.ValidationError('aadhar should contain 12 numbers')
         return aadhar
     
     def save(self,commit=True):
