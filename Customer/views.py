@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from Customer.forms import cust_form
+from Customer.forms import cust_form,customer_login
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
@@ -44,3 +44,5 @@ def logout_view(request):
 @login_required(login_url='/login')
 def home_view(request):
     return render(request=request,template_name='home.html')
+
+
