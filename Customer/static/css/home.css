@@ -1,12 +1,45 @@
-body{
+*{
     margin: 0%;
-    background-color:blanchedalmond;
+    background-color:rgb(232, 181, 219);
+    /* width: 100%; */
+    /* font-family: cursive; */
 }
-.user{
+#home{
+    /* border: 2px solid red; */
+    margin-top: 2%;
+    padding-left: 40%;
+    font-size: large;
+    /* font-weight: 1000 px; */
+}
+#search
+{
+
+    width: 60%;
+    padding-left: 30%;
+    height: 40px;
+    border-radius: 4lvb ;
+}
+
+button{
+    height: 35px;
+    width: 200px;
+    font-size: larger;
+    margin-left: 10%;
+}
+#card{
+    /* border: 2px solid black; */
+    height: 350px;
+    display: flex;
+    justify-content: space-around;
+}
+.sub_cards{
     border: 2px solid red;
-    height: 400px;
-    width: 300px;
-    /* background-image: url("https://www.google.com/imgres?imgurl=https%3A%2F%2Fcdn4.vectorstock.com%2Fi%2Fthumb-large%2F99%2F43%2Fes-letter-logo-design-purple-texture-creative-vector-20769943.jpg&tbnid=HOsOFpahL4yq0M&vet=10CA0QxiAoBWoXChMImI-8iZmAgwMVAAAAAB0AAAAAECw..i&imgrefurl=http%3A%2F%2Facofesal.org%2Fnotes.asp%3Fiid%3D102232768-es%2Blogo%26cid%3D2&docid=sryZQDLun8CH0M&w=238&h=250&itg=1&q=es%20logo&ved=0CA0QxiAoBWoXChMImI-8iZmAgwMVAAAAAB0AAAAAECw"); */
-    background-color: aqua;
-    margin-left: 30%;
+    height: 300px;
+    width: 25%;
+}
+
+img{
+    height: 200px;
+    width: 25%;
+
 }

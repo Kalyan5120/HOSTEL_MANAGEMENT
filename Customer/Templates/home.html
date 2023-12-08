@@ -7,9 +7,50 @@
     <link rel="stylesheet" href="../static/css/home.css">
 </head>
 <body>
+
     <div class="user">
-        <h1>Welcome to my project</h1>
-        {{user}}
+        <div id="home"><h1>HOME_PAGE</h1></div>
+        <br><br>
+ <!-- search starts -->
+        <div id="search">
+            <input type="search" name="search" id="search">
+        </div>
+        <br><br>
+        <!-- search end -->
+      
+        
+<!-- cards start -->
+<div id="card">
+    <div class="sub_cards">
+        <img src="" alt="">
+        <ul>
+            <li>hostel_name</li>
+            <li>area</li>
+            <li><a href="">more_details</a></li>
+        </ul>
+    </div>
+    <div class="sub_cards">
+        <img src="" alt="">
+        <ul>
+            <li>hostel_name</li>
+            <li>area</li>
+            <li><a href="">more_details</a></li>
+        </ul>
+    </div>
+    <div class="sub_cards">
+        <img src="" alt="">
+        <ul>
+            <li>hostel_name</li>
+            <li>area</li>
+            <li><a href="">more_details</a></li>
+        </ul>
+    </div>
+</div>
+<!-- cards end -->
+<br><br>
+<a href="{% url 'personal_details %}"><button>personal_details</button></a>
+        <!-- {{user}} -->
+        <br><br>
         <a href="{% url 'customer:logout' %}"><button>Logout</button></a>
     </div>
 </body>
