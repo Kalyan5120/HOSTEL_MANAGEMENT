@@ -1,0 +1,19 @@
+#login
+{
+    border: 2px solid red;
+    height: 400px;
+    width: 300px;
+    background-color: aqua;
+    margin-top: 10%;
+    margin-left: 40%;
+}
+button{
+    height: 35px;
+    width: 200px;
+    font-size: larger;
+    margin-left: 5%;
+
+}
+button:hover{
+    background-color: green;
+}

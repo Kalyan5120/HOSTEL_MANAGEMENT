@@ -31,11 +31,13 @@
     </div>
     <div class="sub_cards">
         <img src="" alt="">
-        <ul>
-            <li>hostel_name</li>
-            <li>area</li>
-            <li><a href="">more_details</a></li>
-        </ul>
+        <div>
+            <ul>
+                <li>hostel_name</li>
+                <li>area</li>
+                <li><a href="">more_details</a></li>
+            </ul>
+        </div>
     </div>
     <div class="sub_cards">
         <img src="" alt="">
@@ -48,8 +50,8 @@
 </div>
 <!-- cards end -->
 <br><br>
-<a href="{% url 'personal_details %}"><button>personal_details</button></a>
-        <!-- {{user}} -->
+<a href=""><button>personal_details</button></a>
+        {{user}}
         <br><br>
         <a href="{% url 'customer:logout' %}"><button>Logout</button></a>
     </div>
