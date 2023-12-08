@@ -13,7 +13,7 @@ def customer_registration_view(request):
         form=cust_form(request.POST,request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('/customer_login')
+            return redirect('/Customer/customer_login')
     return render(request=request,template_name='customer_register.html',context={'form':form})
 
 
