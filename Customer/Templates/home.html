@@ -4,10 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Page</title>
+    <link rel="stylesheet" href="../static/css/home.css">
 </head>
 <body>
-    <h1>Welcome to my project</h1>
-    {{user}}
-    <a href="{% url 'customer:logout' %}"><button>Logout</button></a>
+    <div class="user">
+        <h1>Welcome to my project</h1>
+        {{user}}
+        <a href="{% url 'customer:logout' %}"><button>Logout</button></a>
+    </div>
 </body>
 </html>
