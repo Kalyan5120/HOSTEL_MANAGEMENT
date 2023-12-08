@@ -16,6 +16,7 @@ import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 STATIC_ROOT=os.path.join(BASE_DIR,'static')
+CUSTOMER_STATIC_DIRS=os.path.join(os.path.join(BASE_DIR,'Customer'),'static')
 MEDIA_ROOT=os.path.join(BASE_DIR,'media')
 
 
@@ -119,6 +120,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = 'static/'
+STATICFILES_DIRS=[CUSTOMER_STATIC_DIRS]
 MEDIA_URL='media/'
 
 # Default primary key field type
