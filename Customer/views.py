@@ -11,7 +11,7 @@ def customer_registration_view(request):
         form=cust_form(request.POST)
         if form.is_valid():
             form.save()
-            return HttpResponse('data is stored')
+            return redirect('/login')
     return render(request=request,template_name='customer_register.html',context={'form':form})
 
 
@@ -24,7 +24,7 @@ def customer_login(request):
             user=authenticate(username=form.cleaned_data['username'],password=form.cleaned_data['password'])
         if user:
             login(request,user)
-            return HttpResponse('data is stored')
+            return redirect('/home')
         return render(request=request,template_name='customer_login.html',context={'form':form})
 
 
