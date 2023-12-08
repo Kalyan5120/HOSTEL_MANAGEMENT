@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect
 from Customer.forms import cust_form
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate,login,logout
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 
 # Create your views here.
@@ -25,3 +26,14 @@ def customer_login(request):
             login(request,user)
             return HttpResponse('data is stored')
         return render(request=request,template_name='customer_login.html',context={'form':form})
+
+
+@login_required(login_url='/login')
+def logout_view(request):
+    logout(request)
+    return HttpResponse('data is stored')
+
+
+@login_required(login_url='/login')
+def home_view(request):
+    return render(request=request,template_name='home.html')
