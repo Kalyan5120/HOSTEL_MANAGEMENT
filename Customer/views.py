@@ -33,10 +33,7 @@ def customer_view(request):
 def customer_list(request):
     form=customer_register.objects.all()
     return render(request=request,template_name='customer_list.html',context={'form':form})
-
-    
-
-
+   
 
 
 @login_required(login_url='/login')
@@ -48,3 +45,5 @@ def logout_view(request):
 @login_required(login_url='/login')
 def home_view(request):
     return render(request=request,template_name='home.html')
+
+
