@@ -32,10 +32,7 @@ def customer_view(request):
 def customer_list(request):
     form=customer_register.objects.all()
     return render(request=request,template_name='customer_list.html',context={'form':form})
-
-    
-
-
+   
 
 
 @login_required(login_url='/login')
