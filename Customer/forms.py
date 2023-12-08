@@ -21,8 +21,8 @@ class cust_form(forms.ModelForm):
             raise forms.ValidationError('username should not be greater than 20 characters')
         return username
     
-    def clean_contact(self):
-        cntno = self.cleaned_data['contact']
+    def clean_c_contact(self):
+        cntno = self.cleaned_data['c_contact']
         if len(str(cntno))!=10:
             raise forms.ValidationError('phoneno must be 10 numbers')
         if str(cntno)[0] not in '9876':
