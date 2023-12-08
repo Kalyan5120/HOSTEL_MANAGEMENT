@@ -1,9 +1,10 @@
 from django.shortcuts import render,redirect
-from Customer.forms import cust_form
+from Customer.forms import cust_form,customer_login
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from Customer.models import customer_register
+
 
 # Create your views here.
 def customer_registration_view(request):
@@ -12,7 +13,7 @@ def customer_registration_view(request):
         form=cust_form(request.POST,request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('/login')
+            return redirect('/customer_login')
     return render(request=request,template_name='customer_register.html',context={'form':form})
 
 
@@ -25,7 +26,7 @@ def customer_view(request):
             user=authenticate(username=form.cleaned_data['username'],password=form.cleaned_data['password'])
         if user:
             login(request,user)
-            return redirect('/home')
+            return redirect('/Customer/home')
     return render(request=request,template_name='customer_login.html',context={'form':form})
 
 
