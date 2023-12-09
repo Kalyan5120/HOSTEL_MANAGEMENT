@@ -4,9 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>customer login</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
 </head>
 <body>
-    <h1>Customer_login Page</h1>
+    <div id="login">
+        <h1>Customer_login Page</h1>
     <form action="" method="post">
         {% csrf_token %}
         <table>
@@ -14,5 +17,6 @@
         </table>
         <input type="submit" value="login">
     </form>
+    </div>
 </body>
 </html>

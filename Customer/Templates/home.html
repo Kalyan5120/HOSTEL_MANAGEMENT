@@ -4,10 +4,57 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Page</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
 </head>
 <body>
-    <h1>Welcome to my project</h1>
-    {{user}}
-    <a href="{% url 'customer:logout' %}"><button>Logout</button></a>
+
+    <div class="user">
+        <div id="home"><h1>HOME_PAGE</h1></div>
+        <br><br>
+ <!-- search starts -->
+        <div id="search">
+            <input type="search" name="search" id="search">
+        </div>
+        <br><br>
+        <!-- search end -->
+      
+        
+<!-- cards start -->
+<div id="card">
+    <div class="sub_cards">
+        <img src="" alt="">
+        <ul>
+            <li>hostel_name</li>
+            <li>area</li>
+            <li><a href="">more_details</a></li>
+        </ul>
+    </div>
+    <div class="sub_cards">
+        <img src="" alt="">
+        <div>
+            <ul>
+                <li>hostel_name</li>
+                <li>area</li>
+                <li><a href="">more_details</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="sub_cards">
+        <img src="" alt="">
+        <ul>
+            <li>hostel_name</li>
+            <li>area</li>
+            <li><a href="">more_details</a></li>
+        </ul>
+    </div>
+</div>
+<!-- cards end -->
+<br><br>
+<a href=""><button>personal_details</button></a>
+        {{user}}
+        <br><br>
+        <a href="{% url 'customer:logout' %}"><button>Logout</button></a>
+    </div>
 </body>
 </html>

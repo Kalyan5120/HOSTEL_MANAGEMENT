@@ -1,0 +1,50 @@
+*{
+    margin: 0%;
+    /* background-color:rgb(232, 181, 219); */
+    /* width: 100%; */
+    /* font-family: cursive; */
+}
+#home{
+    /* border: 2px solid red; */
+    margin-top: 2%;
+    padding-left: 40%;
+    font-size: large;
+    /* font-weight: 1000 px; */
+}
+#search
+{
+
+    width: 60%;
+    padding-left: 30%;
+    height: 40px;
+    border-radius: 4lvb ;
+}
+
+button{
+    height: 35px;
+    width: 200px;
+    font-size: larger;
+    margin-left: 5%;
+
+}
+button:hover{
+    background-color: green;
+}
+#card{
+    /* border: 2px solid black; */
+    height: 350px;
+    display: flex;
+    justify-content: space-around;
+}
+.sub_cards{
+    border: 2px solid red;
+    height: 300px;
+    width: 25%;
+    background-color: aqua;
+}
+
+img{
+    height: 200px;
+    width: 25%;
+
+}
