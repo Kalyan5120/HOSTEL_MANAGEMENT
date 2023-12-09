@@ -1,10 +1,8 @@
 from django.urls import path
-from Owner.views import Owner_login,logout_view
-app_name='Owner'
-
-
+from Owner.views import owner_view,logout_view,home_view
 
 urlpatterns=[
-    path(route='login/',view=Owner_login,name='login'),
-    path(route='logout/',view=logout_view,name='logout')
+    path(route='owner_login/',view=owner_view,name='o_login'),
+    path(route='owner_logout/',view=logout_view,name='o_logout'),
+    path(route='home/',view=home_view,name='home')
 ]

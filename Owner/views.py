@@ -2,10 +2,11 @@ from django.shortcuts import render,redirect
 from Owner.forms import Owner_login
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse
+from Owner.models import Owner_registration_model
 
 
-# Create your views here.
-def login_view(request):
+def owner_view(request):
     form=Owner_login()
     if request.method=='POST':
         form=Owner_login(request.POST)
@@ -14,15 +15,15 @@ def login_view(request):
         if user:
             login(request,user)
             return redirect('/Owner/home')
-    return render(request=request,template_name='owner_login.html')
+    return render(request=request,template_name='owner_login.html',context={'form':form})
 
 
-@login_required(login_url='/Owner/owner_login')
+@login_required(login_url='/Owner/o_login')
 def logout_view(request):
     logout(request)
-    return redirect('/Owner/Owner_login')
+    return redirect('/Owner/o_login')
 
 
-@login_required(login_url='/Owner/owner_login')
+@login_required(login_url='/Owner/o_login')
 def home_view(request):
-    return render(request=request,template_name='home_page.html')
+    return render(request=request,template_name='home.html')
