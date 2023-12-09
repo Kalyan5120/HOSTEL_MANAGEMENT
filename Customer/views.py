@@ -36,13 +36,13 @@ def customer_list(request):
    
 
 
-@login_required(login_url='/login')
+@login_required(login_url='/Customer/customer_login')
 def logout_view(request):
     logout(request)
-    return HttpResponse('data is stored')
+    return redirect('/Customer/customer_login')
 
 
-@login_required(login_url='/login')
+@login_required(login_url='/Customer/customer_login')
 def home_view(request):
     return render(request=request,template_name='home.html')
 
