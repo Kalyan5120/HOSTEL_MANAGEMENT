@@ -39,7 +39,7 @@ class Owner_registration_form(forms.ModelForm):
             raise forms.ValidationError('password should start with uppercase character')
         if len(re.findall('[0-9]',pswrd))==0:
             raise forms.ValidationError('password must contain atleast one character')
-        if len(re.findall['^0-9a-zA-Z'],pswrd)==0:
+        if len(re.findall('[^0-9a-zA-Z]',pswrd))==0:
             raise forms.ValidationError('password must contain atleast one special character')
         return pswrd
     
@@ -53,7 +53,7 @@ class Owner_registration_form(forms.ModelForm):
             raise forms.ValidationError('repassword should start with uppercase character')
         if len(re.findall('[0-9]',pswrd))==0:
             raise forms.ValidationError('repassword must contain atleast one character')
-        if len(re.findall['^0-9a-zA-Z'],pswrd)==0:
+        if len(re.findall('[^0-9a-zA-Z]',pswrd))==0:
             raise forms.ValidationError('repassword must contain atleast one special character')
         if self.cleaned_data['password']!=pswrd:
             raise forms.ValidationError('password and repassword should be same')
@@ -93,7 +93,7 @@ class Owner_login(forms.Form):
             raise forms.ValidationError('password should start with uppercase character')
         if len(re.findall('[0-9]',pswrd))==0:
             raise forms.ValidationError('password must contain atleast one character')
-        if len(re.findall['^0-9a-zA-Z'],pswrd)==0:
+        if len(re.findall('[^0-9a-zA-Z]',pswrd))==0:
             raise forms.ValidationError('password must contain atleast one special character')
         return pswrd 
 #owner loginpage end 

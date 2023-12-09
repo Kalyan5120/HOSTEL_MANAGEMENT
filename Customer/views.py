@@ -35,6 +35,8 @@ def customer_list(request):
     return render(request=request,template_name='customer_list.html',context={'form':form})
    
 
+def p_details_view(request):   
+    return render(request=request,template_name='p_details.html')
 
 @login_required(login_url='/Customer/customer_login')
 def logout_view(request):
