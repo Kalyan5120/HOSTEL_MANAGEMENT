@@ -17,12 +17,12 @@ def login_view(request):
     return render(request=request,template_name='owner_login.html')
 
 
-@login_required(login_url='/Owner/Owner_login')
+@login_required(login_url='/Owner/owner_login')
 def logout_view(request):
     logout(request)
     return redirect('/Owner/Owner_login')
 
 
-@login_required(login_url='/Owner/Owner_login')
+@login_required(login_url='/Owner/owner_login')
 def home_view(request):
     return render(request=request,template_name='home_page.html')
