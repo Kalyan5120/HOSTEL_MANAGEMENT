@@ -14,16 +14,16 @@ def owner_view(request):
             user=authenticate(username=form.cleaned_data['username'],password=form.cleaned_data['password'])
         if user:
             login(request,user)
-            return redirect('/Owner/home')
+            return HttpResponse('data is stored')
     return render(request=request,template_name='owner_login.html',context={'form':form})
 
 
-@login_required(login_url='/Owner/o_login')
-def logout_view(request):
-    logout(request)
-    return redirect('/Owner/o_login')
+# @login_required(login_url='/Owner/o_login')
+# def logout_view(request):
+#     logout(request)
+#     return redirect('/Owner/o_login')
 
 
-@login_required(login_url='/Owner/o_login')
-def home_view(request):
-    return render(request=request,template_name='home.html')
+# @login_required(login_url='/Owner/o_login')
+# def home_view(request):
+#     return render(request=request,template_name='home.html')
