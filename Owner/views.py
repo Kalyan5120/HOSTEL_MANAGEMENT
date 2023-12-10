@@ -15,7 +15,7 @@ def owner_view(request):
             user=authenticate(username=form.cleaned_data['username'],password=form.cleaned_data['password'])
         if user:
             login(request,user)
-            return redirect('/Owner/home')
+            return HttpResponse('data is stored')
     return render(request=request,template_name='owner_login.html',context={'form':form})
 
 
