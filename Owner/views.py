@@ -15,7 +15,7 @@ def owner_view(request):
             user=authenticate(username=form.cleaned_data['username'],password=form.cleaned_data['password'])
         if user:
             login(request,user)
-            return HttpResponse('data is stored')
+            return redirect('/Owner/home')
     return render(request=request,template_name='owner_login.html',context={'form':form})
 
 
@@ -26,5 +26,5 @@ def logout_view(request):
 
 
 @login_required(login_url='/Owner/o_login')
-def home_view(request):
-    return render(request=request,template_name='home.html')
+def owner_home_view(request):
+    return render(request=request,template_name='home_page.html')
