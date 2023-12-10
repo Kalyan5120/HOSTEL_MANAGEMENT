@@ -6,6 +6,7 @@ from django.http import HttpResponse
 from Owner.models import Owner_registration_model
 
 
+
 def owner_view(request):
     form=Owner_login()
     if request.method=='POST':
@@ -24,6 +25,6 @@ def owner_view(request):
 #     return redirect('/Owner/o_login')
 
 
-# @login_required(login_url='/Owner/o_login')
-# def home_view(request):
-#     return render(request=request,template_name='home.html')
+@login_required(login_url='/Owner/o_login')
+def home_view(request):
+    return render(request=request,template_name='home.html')
