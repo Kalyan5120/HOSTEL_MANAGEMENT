@@ -3,18 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>customer_Register</title>
+    <title>owner_Register</title>
 </head>
 <body>
-    <h1>Customer_register page</h1>
-    <form action="" method="post" enctype="multipart/form-data">
+    <h1>Owner_register page</h1>
+    <form action="" method="post">
         {% csrf_token %}
         <table>
             {{form}}
         </table>
         <input type="submit" value="register">
     </form>
-    <h1>Already an account</h1>
-    <a href="{% url 'customer:customer_login' %}"><button>Login</button></a>
 </body>
 </html>
