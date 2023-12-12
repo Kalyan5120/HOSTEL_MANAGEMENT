@@ -1,11 +1,24 @@
 from django import forms
 from django.contrib.auth.hashers import make_password
 from Customer.models import customer_register
+from django.contrib.auth.models import User
 import re
 
 #customer registration page start
 class cust_form(forms.ModelForm):
     repassword=forms.CharField(widget=forms.PasswordInput)
+
+    def clean(self):
+        res=self.cleaned_data['username']
+        temp=User.objects.all().values_list('username')
+        if (res,) not in temp:
+            raise forms.ValidationError('User not Found')
+
+    # def clean(self):
+    #     res=self.cleaned_data['email address']
+    #     temp=User.objects.all().values_list('email address')
+    #     if (res,) not in temp:
+    #         raise forms.ValidationError('email not Found')
 
     class Meta:
         model=customer_register

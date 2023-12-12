@@ -5,4 +5,5 @@ from django.contrib.auth.models import User
 class Owner_registration_model(User):
     gender=models.CharField(max_length=10,choices=[['female','female'],['male','male']])
     contactno=models.PositiveBigIntegerField(unique=True)
+    repassword=models.CharField(max_length=20)
     

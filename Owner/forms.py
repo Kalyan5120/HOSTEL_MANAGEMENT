@@ -5,11 +5,9 @@ import re
 
 # owner registration_admin start
 class Owner_registration_form(forms.ModelForm):
-    repassword=forms.CharField(widget=forms.PasswordInput)
-
     class Meta:
         model=Owner_registration_model
-        fields=['username','first_name','last_name','email','contactno','gender','password'] 
+        fields=['username','first_name','last_name','email','contactno','gender','password','repassword'] 
 
     def clean_username(self):
         username = self.cleaned_data['username']
@@ -59,6 +57,7 @@ class Owner_registration_form(forms.ModelForm):
             raise forms.ValidationError('password and repassword should be same')
         return pswrd
     
+    
     def save(self,commit=True):
         user=super().save(commit=False)
         if self.cleaned_data['password']==self.cleaned_data['repassword']:
@@ -66,6 +65,7 @@ class Owner_registration_form(forms.ModelForm):
             if commit:
                 user.save()
             return user
+        
 #owner registration_admin end   
 
 #owner loginpage start
