@@ -61,7 +61,7 @@ def home_view(request):
 
 otp_confirm=None
 
-# @login_required(login_url='/Customer/customer_login')
+@login_required(login_url='/Customer/customer_login')
 def forgetpassword_view(request):
     res=customer_register.objects.all().values_list('email')    
     global otp_confirm
@@ -101,7 +101,7 @@ def changepswrd_view(request,pk):
             print("bye")
             if form.cleaned_data['enter_new_password']==form.cleaned_data['reenter_new_password']:
                 customer_register.objects.filter(id=pk).update(password=make_password(form.cleaned_data['enter_new_password']))
-                return HttpResponse('password is changed')
+                return redirect('/Customer/customer_login')
     return render(request=request,template_name='changepswrd.html',context={'form':form})
 
 
