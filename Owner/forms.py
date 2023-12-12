@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.hashers import make_password
 from Owner.models import Owner_registration_model
+from Owner.validators import clean_enter_new_password
 import re
 
 # owner registration_admin start
@@ -98,3 +99,25 @@ class Owner_login(forms.Form):
         return pswrd 
 #owner loginpage end 
 
+#changepswrd
+
+class changepswrd_form(forms.Form):
+    enter_new_password=forms.CharField(widget=forms.PasswordInput,validators=[clean_enter_new_password,])
+    reenter_new_password=forms.CharField(widget=forms.PasswordInput)
+
+    def clean_reenter_new_password(self):
+            print("how")
+            pswrd=self.cleaned_data['reenter_new_password']
+            if len(pswrd)<3:
+                raise forms.ValidationError('repassword should not be less than 3 characters')
+            if len(pswrd)>20:
+                raise forms.ValidationError('repassword should not be greater than 20 characters')
+            if not(pswrd[0].isupper()):
+                raise forms.ValidationError('repassword should start with uppercase character')
+            if len(re.findall('[0-9]',pswrd))==0:
+                raise forms.ValidationError('repassword must contain atleast one character')
+            if len(re.findall('[^0-9a-zA-Z]',pswrd))==0:
+                raise forms.ValidationError('repassword must contain atleast one special character')
+            if self.cleaned_data['enter_new_password']!=pswrd:
+                raise forms.ValidationError('password and repassword should be same')
+            return pswrd
