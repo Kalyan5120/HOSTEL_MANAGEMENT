@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from Customer.forms import cust_form,customer_login
+from Customer.forms import cust_form,customer_login,changepswrd_form
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
@@ -8,6 +8,8 @@ from django.conf import settings
 from django.core.mail import send_mail
 from Customer.models import customer_register
 from django.contrib import messages
+from django.contrib.auth.hashers import make_password
+
 
 
 # Create your views here.
@@ -72,23 +74,34 @@ def forgetpassword_view(request):
                 please confirm the otp:{otp}
                 thank you.'''
             send_mail(subject=subject,message=msg,from_email=settings.EMAIL_HOST_USER,recipient_list=[email,])
-            return redirect('/Customer/customer_otp')
+            email_id=customer_register.objects.get(email=email)
+            return redirect(f'/Customer/customer_otp/{email_id.id}/')
         else:
             messages.error(request,'email is incorrect')
     return render(request=request,template_name='forget_password.html')
 
 
-def otp_confirm_view(request):
+def otp_confirm_view(request,pk):
     if request.method=='POST':
         if str(otp_confirm)==str(request.POST['otp_confirm']):
-            return redirect('/Customer/changepswrd')
+            return redirect(f'/Customer/changepswrd/{pk}/')
         else:
             return redirect('/Customer/forgetpswrd')
     return render(request=request,template_name='enterotp.html')
     
 
-def changepswrd_view(request):
-    return render(request=request,template_name='changepswrd.html')
+def changepswrd_view(request,pk):
+    form=changepswrd_form()
+    if request.method=='POST':
+        res=customer_register.objects.get(id=pk)
+        form=changepswrd_form(request.POST)
+        print(form)
+        if form.is_valid():
+            print("bye")
+            if form.cleaned_data['enter_new_password']==form.cleaned_data['reenter_new_password']:
+                customer_register.objects.filter(id=pk).update(password=make_password(form.cleaned_data['enter_new_password']))
+                return HttpResponse('password is changed')
+    return render(request=request,template_name='changepswrd.html',context={'form':form})
 
 
 

@@ -2,12 +2,13 @@ from django import forms
 from django.contrib.auth.hashers import make_password
 from Customer.models import customer_register
 from django.contrib.auth.models import User
+from Customer.validators import clean_enter_new_password
 import re
 
 #customer registration page start
 class cust_form(forms.ModelForm):
     repassword=forms.CharField(widget=forms.PasswordInput)
-
+    
     def clean(self):
         res=self.cleaned_data['username']
         temp=User.objects.all().values_list('username')
@@ -112,3 +113,26 @@ class customer_login(forms.Form):
             raise forms.ValidationError('password must contain atleast one special character')
         return pswrd 
 #owner loginpage end 
+
+
+
+class changepswrd_form(forms.Form):
+    enter_new_password=forms.CharField(widget=forms.PasswordInput,validators=[clean_enter_new_password,])
+    reenter_new_password=forms.CharField(widget=forms.PasswordInput)
+
+    def clean_reenter_new_password(self):
+            print("how")
+            pswrd=self.cleaned_data['reenter_new_password']
+            if len(pswrd)<3:
+                raise forms.ValidationError('repassword should not be less than 3 characters')
+            if len(pswrd)>20:
+                raise forms.ValidationError('repassword should not be greater than 20 characters')
+            if not(pswrd[0].isupper()):
+                raise forms.ValidationError('repassword should start with uppercase character')
+            if len(re.findall('[0-9]',pswrd))==0:
+                raise forms.ValidationError('repassword must contain atleast one character')
+            if len(re.findall('[^0-9a-zA-Z]',pswrd))==0:
+                raise forms.ValidationError('repassword must contain atleast one special character')
+            if self.cleaned_data['enter_new_password']!=pswrd:
+                raise forms.ValidationError('password and repassword should be same')
+            return pswrd

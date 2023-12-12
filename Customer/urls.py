@@ -10,6 +10,6 @@ urlpatterns=[
     path(route='list/',view=customer_list,name='list'),
     path(route='p_details/',view=p_details_view,name='p_details'),
     path(route='forgetpswrd/',view=forgetpassword_view,name='forgetpswrd'),
-    path(route='customer_otp/',view=otp_confirm_view,name='customer_otp'),
-    path(route='changepswrd/',view=changepswrd_view,name='changepswrd')
+    path(route='customer_otp/<int:pk>/',view=otp_confirm_view,name='customer_otp'),
+    path(route='changepswrd/<int:pk>/',view=changepswrd_view,name='changepswrd')
 ]

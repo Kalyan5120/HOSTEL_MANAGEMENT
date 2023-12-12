@@ -9,11 +9,10 @@
     <h1>Change password</h1>
     <form action="" method="post">
         {% csrf_token %}
-        <label for="id_pswrd">Enter new password:</label>
-        <input type="password" name="" id="id_pswrd"><br>
-        <label for="id_repswrd">Re-Enter new password:</label>
-        <input type="password" name="" id="id_repswrd">
-        <input type="submit" value="confirm">
+        <table>
+            {{form}}
+        </table>
+        <input type="submit" value="Confirm">
     </form>
 </body>
 </html>
