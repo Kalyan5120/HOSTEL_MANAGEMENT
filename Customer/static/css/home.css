@@ -3,12 +3,15 @@
     /* background-color:rgb(232, 181, 219); */
     /* width: 100%; */
     /* font-family: cursive; */
+    /* background-image: url(""); */
+    background-image: url('../images/initial-es-home-logo.webp');
 }
 #home{
     /* border: 2px solid red; */
     margin-top: 2%;
     padding-left: 40%;
     font-size: large;
+    
     /* font-weight: 1000 px; */
 }
 #search
@@ -39,12 +42,13 @@ button:hover{
 .sub_cards{
     border: 2px solid red;
     height: 300px;
-    width: 25%;
+    width: 250px;
     background-color: aqua;
 }
 
 img{
-    height: 200px;
-    width: 25%;
+    border: 2px solid yellow;
+    height: 300px;
+    width: 250px;
 
 }

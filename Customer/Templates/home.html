@@ -23,7 +23,7 @@
 <!-- cards start -->
 <div id="card">
     <div class="sub_cards">
-        <img src="" alt="">
+        <img src="{% static 'images/image1.jpg' %}" alt="">
         <ul>
             <li>hostel_name</li>
             <li>area</li>
@@ -31,7 +31,7 @@
         </ul>
     </div>
     <div class="sub_cards">
-        <img src="" alt="">
+        <img id="" src="{% static 'images/image1.jpg' %}" alt="">
         <div>
             <ul>
                 <li>hostel_name</li>
@@ -52,7 +52,6 @@
 <!-- cards end -->
 <br><br>
 <a href=""><button>personal_details</button></a>
-        {{user}}
         <br><br>
         <a href="{% url 'customer:logout' %}"><button>Logout</button></a>
     </div>
