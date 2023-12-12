@@ -14,11 +14,6 @@ class cust_form(forms.ModelForm):
         if (res,) not in temp:
             raise forms.ValidationError('User not Found')
 
-    # def clean(self):
-    #     res=self.cleaned_data['email address']
-    #     temp=User.objects.all().values_list('email address')
-    #     if (res,) not in temp:
-    #         raise forms.ValidationError('email not Found')
 
     class Meta:
         model=customer_register

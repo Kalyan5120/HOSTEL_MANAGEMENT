@@ -60,19 +60,21 @@ otp_confirm=None
 
 # @login_required(login_url='/Customer/customer_login')
 def forgetpassword_view(request):
+    res=customer_register.objects.all().values_list('email')    
     global otp_confirm
     if request.method=='POST':
         otp=random.randint(0000,9999)
         otp_confirm=otp
         email=request.POST['email']
-        subject='confirm the OTP'
-        msg=f'''hello ,
-            please confirm the otp:{otp}
-            thank you.'''
-        send_mail(subject=subject,message=msg,from_email=settings.EMAIL_HOST_USER,recipient_list=[email,])
-        return redirect('/Customer/customer_otp')
-    else:
-        messages.error(request,'email is incorrect')
+        if (email,) in res:
+            subject='confirm the OTP'
+            msg=f'''hello ,
+                please confirm the otp:{otp}
+                thank you.'''
+            send_mail(subject=subject,message=msg,from_email=settings.EMAIL_HOST_USER,recipient_list=[email,])
+            return redirect('/Customer/customer_otp')
+        else:
+            messages.error(request,'email is incorrect')
     return render(request=request,template_name='forget_password.html')
 
 
