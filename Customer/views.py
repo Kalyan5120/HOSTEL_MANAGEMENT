@@ -57,6 +57,7 @@ def logout_view(request):
 def home_view(request):
     return render(request=request,template_name='home.html')
 
+#forget password 
 
 otp_confirm=None
 

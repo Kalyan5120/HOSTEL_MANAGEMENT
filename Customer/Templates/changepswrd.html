@@ -4,8 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>change pswrd</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/change_pas.css' %}">
 </head>
 <body>
+<<<<<<< HEAD
     <h1>Change password</h1>
     <form action="" method="post">
         {% csrf_token %}
@@ -14,5 +17,18 @@
         </table>
         <input type="submit" value="Confirm">
     </form>
+=======
+    <div class="main">
+        <h1>Change password</h1>
+        <form action="" method="post">
+            {% csrf_token %}
+            <label for="id_pswrd">Enter new password:</label>
+            <input type="password" name="" id="id_pswrd"><br>
+            <label for="id_repswrd">Re-Enter new password:</label>
+            <input type="password" name="" id="id_repswrd">
+            <input type="submit" value="confirm">
+        </form>
+    </div>
+>>>>>>> 7aa22bfb1e46a4776ef311195e7c497aa58844a9
 </body>
 </html>
