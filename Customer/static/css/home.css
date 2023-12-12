@@ -39,8 +39,7 @@ button:hover{
     background-color: aqua;
 }
 
-.img1{
-    border: 2px solid yellow;
+.image1{
     height: 200px;
-    width: 246px;
+    width: 200px;
 }
