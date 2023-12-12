@@ -4,17 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>customer_Register</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/register.css' %}">
+    <style>
+        body{
+            background-image: url('{% static "images/Image7.jpg" %}');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover; 
+        }
+        #marquee{
+            /* border: 2px solid red; */
+            /* height: 1000px; */
+            color:grey;
+            font-size: 80px;
+            font-family: cursive;
+            font-style: italic;
+            font-weight: bolder;
+            /* padding-top: 10%; */
+        }
+    </style>
 </head>
 <body>
-    <h1>Customer_register page</h1>
-    <form action="" method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        <table>
-            {{form}}
-        </table>
-        <input type="submit" value="register">
-    </form>
-    <h1>Already an account</h1>
-    <a href="{% url 'customer:customer_login' %}"><button>Login</button></a>
+    <marquee id="marquee" direction="right">ESAY_STAY</marquee>
+    <div class="main">
+        <h1>Customer_register page</h1>
+        <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <table>
+                {{form}}
+            </table>
+            <input type="submit" value="register">
+        </form>
+            <h1>Already an account</h1>
+            <a href="{% url 'customer:customer_login' %}"><button>Login</button></a>
+    </div>
 </body>
 </html>
