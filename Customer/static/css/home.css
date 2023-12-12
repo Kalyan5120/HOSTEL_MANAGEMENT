@@ -1,4 +1,7 @@
-
+*{
+    margin: 0%;
+    height: 700px;
+}
 #home{
     /* border: 2px solid red; */
     margin-top: 2%;
