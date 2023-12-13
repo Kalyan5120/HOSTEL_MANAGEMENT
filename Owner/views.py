@@ -100,7 +100,7 @@ def hostel_details_view(request):
         form=hostel_details_form(request.POST)
         if form.is_valid():
             form.save()
-        return redirect('/Owner/home')
+        return redirect('/Owner/room_details')
     return render(request=request,template_name='hostel_details.html',context={'form':form})
 
 
@@ -130,7 +130,7 @@ def room_details_view(request):
     if request.method=='POST':
         form=room_details_form(request.POST)
         if form.is_valid():
-            # form.save()
+            form.save()
             hostel_id=form.cleaned_data['hostel_id'].hostel_id
             return redirect(f'/Owner/bed_details/{hostel_id}/')
     return render(request=request,template_name='room_details.html',context={'form':form})
@@ -147,6 +147,7 @@ def bed_details_view(request,pk):
         form=bed_details_form(request.POST)
         if form.is_valid():
             form.save()
+            return redirect('/Owner/list')
     return render(request=request,template_name='bed_details.html',context={'form':form,'hostel_id':pk})
 
 
