@@ -136,3 +136,5 @@ class changepswrd_form(forms.Form):
             if self.cleaned_data['enter_new_password']!=pswrd:
                 raise forms.ValidationError('password and repassword should be same')
             return pswrd
+    
+

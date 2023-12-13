@@ -61,7 +61,7 @@ def home_view(request):
 
 otp_confirm=None
 
-@login_required(login_url='/Customer/customer_login')
+
 def forgetpassword_view(request):
     res=customer_register.objects.all().values_list('email')    
     global otp_confirm

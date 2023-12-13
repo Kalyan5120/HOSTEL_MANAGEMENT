@@ -6,6 +6,7 @@
     <title>Home Page</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <!-- <link rel="shortcut icon" href="../static/images/image1.jpg" type="image/x-icon"> -->
     <style>
         body{
             background-image: url('{% static "images/Image7.jpg" %}');
@@ -60,8 +61,8 @@
  <!-- cards end -->
 <br><br>
     <a href=""><button>personal_details</button></a>
-        <br><br>
-        <a href="{% url 'customer:logout' %}"><button>Logout</button></a>
+    <br><br>
+    <a href="{% url 'customer:logout' %}"><button>Logout</button></a>
 </div>
 </body>
 </html>

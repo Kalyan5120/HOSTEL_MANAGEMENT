@@ -6,8 +6,29 @@
     <title>customer login</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <link rel="shortcut icon" href="{% static 'images/Image7.jpg' %}">
+    <!-- <link rel="shortcut icon" href="../static/images/image8.jpg"> -->
+    <style>
+        body{
+            background-image: url('{% static "images/Image7.jpg" %}');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover; 
+        }
+        #marquee{
+            /* border: 2px solid red; */
+            /* height: 1000px; */
+            color:grey;
+            font-size: 80px;
+            font-family: cursive;
+            font-style: italic;
+            font-weight: bolder;
+            /* padding-top: 10%; */
+        }
+    </style>
 </head>
 <body>
+    <marquee id="marquee" direction="right">ESAY_STAY</marquee>
     <div id="login">
         <h1>Customer_login Page</h1>
         {% for i in messages %}
@@ -21,6 +42,7 @@
         <input type="submit" value="login"><br>
         <a href="{% url 'customer:forgetpswrd' %}">Forget password?</a>
     </form>
+    
     <h1>New user?</h1>
     <a href="{% url 'customer:c_register' %}"><button>Register</button></a>
     </div>
