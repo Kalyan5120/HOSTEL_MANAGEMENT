@@ -11,7 +11,9 @@
         {% csrf_token %}
         <table>
             {{form}}
+            <input type="hidden" name="hid" value="{{hostel_id}}">
         </table>
+       
         <input type="submit" value="save">
     </form>
 </body>

@@ -22,6 +22,8 @@ class hostel_details_model(models.Model):
     owner_email=models.EmailField(unique=True)
     vaccancy=models.PositiveBigIntegerField()
     rating=models.DecimalField(max_digits=2,decimal_places=1)
+    def __str__(self):
+        return self.hostel_name
 
 class gallery_model(models.Model):
     gallery_id=models.AutoField(primary_key=True)
@@ -38,6 +40,8 @@ class rooms_details_model(models.Model):
     room_id=models.AutoField(primary_key=True)
     room_no=models.PositiveIntegerField()
     num_of_beds=models.PositiveIntegerField()
+    def __str__(self):
+        return str(self.room_no)
 
 
 class bed_details_model(models.Model):
@@ -46,6 +50,8 @@ class bed_details_model(models.Model):
     bed_no=models.CharField(choices=[['1','1'],['2','2'],['3','3'],['4','4'],['5','5'],['6','6']],max_length=10)
     bed_cost=models.PositiveIntegerField()
     availability=models.BooleanField()
+    def __str__(self):
+        return str(self.bed_no)
 
 class occupied_details_model(models.Model):
     occ_id=models.AutoField(primary_key=True)
@@ -57,3 +63,5 @@ class occupied_details_model(models.Model):
     email=models.EmailField(unique=True)
     aadhaar=models.PositiveBigIntegerField()
     image=models.ImageField(upload_to='profile/',null=True)
+    def __str__(self):
+        return self.name

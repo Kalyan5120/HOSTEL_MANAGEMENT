@@ -1,5 +1,6 @@
 from typing import Any
 from django import forms
+from Owner.models import *
 from django.contrib.auth.hashers import make_password
 from Owner.models import Owner_registration_model,hostel_details_model,occupied_details_model,gallery_model,comments_model,rooms_details_model,bed_details_model
 from Owner.validators import clean_enter_new_password
@@ -153,10 +154,28 @@ class room_details_form(forms.ModelForm):
         model=rooms_details_model
         fields='__all__'
 
+    def clean_room_no(self):
+        room=self.cleaned_data['room_no']
+        if (room,)  in rooms_details_model.objects.filter(hostel_id=self.data['hostel_id']).values_list('room_no'):
+            raise forms.ValidationError("room number already exist")
+        return room
+
+
 class bed_details_form(forms.ModelForm):
     class Meta:
         model=bed_details_model
         fields='__all__'
+
+    def clean(self):
+        room=self.cleaned_data['room_no'].room_no
+        bed=self.cleaned_data['bed_no']
+        res=rooms_details_model.objects.get(hostel_id=int(self.data['hid']),room_no=room)
+        if int(bed)>int(res.num_of_beds):
+            raise forms.ValidationError(f'Bed Number Should be below {int(res.num_of_beds)+1}')
+        bed=self.cleaned_data['bed_no']
+        if (bed,)  in bed_details_model.objects.filter(room_no_id=self.cleaned_data['room_no'].room_id).values_list('bed_no'):
+            raise forms.ValidationError(f"Bed no {bed} already exist")
+
 
 class occupied_details_form(forms.ModelForm):
     class Meta:
