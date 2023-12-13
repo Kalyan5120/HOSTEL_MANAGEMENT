@@ -7,3 +7,4 @@ class Owner_registration_model(User):
     contactno=models.PositiveBigIntegerField(unique=True)
     repassword=models.CharField(max_length=20)
     
+
