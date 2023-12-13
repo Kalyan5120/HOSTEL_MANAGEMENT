@@ -1,6 +1,7 @@
+from typing import Any
 from django import forms
 from django.contrib.auth.hashers import make_password
-from Owner.models import Owner_registration_model
+from Owner.models import Owner_registration_model,hostel_details_model,occupied_details_model,gallery_model,comments_model,rooms_details_model,bed_details_model
 from Owner.validators import clean_enter_new_password
 import re
 
@@ -121,3 +122,61 @@ class changepswrd_form(forms.Form):
             if self.cleaned_data['enter_new_password']!=pswrd:
                 raise forms.ValidationError('password and repassword should be same')
             return pswrd
+
+
+class hostel_details_form(forms.ModelForm):
+    class Meta:
+        model=hostel_details_model
+        fields='__all__'
+
+    def clean_phoneno(self):
+        phoneno = self.cleaned_data['owner_phone_no']
+        if len(str(phoneno))!=10:
+            raise forms.ValidationError('phoneno must be 10 numbers')
+        if str(phoneno)[0] not in '9876':
+            raise forms.ValidationError('phoneno should start with 9,8,7,6') 
+        return phoneno
+    
+
+class gallery_form(forms.ModelForm):
+    class Meta:
+        model=gallery_model
+        fields='__all__'
+
+class comments_form(forms.ModelForm):
+    class Meta:
+        model=comments_model
+        fields='__all__'
+
+class room_details_form(forms.ModelForm):
+    class Meta:
+        model=rooms_details_model
+        fields='__all__'
+
+class bed_details_form(forms.ModelForm):
+    class Meta:
+        model=bed_details_model
+        fields='__all__'
+
+class occupied_details_form(forms.ModelForm):
+    class Meta:
+        model=occupied_details_model
+        fields='__all__'
+
+    def clean_phoneno(self):
+        phoneno = self.cleaned_data['phone_no']
+        if len(str(phoneno))!=10:
+            raise forms.ValidationError('phoneno must be 10 numbers')
+        if str(phoneno)[0] not in '9876':
+            raise forms.ValidationError('phoneno should start with 9,8,7,6') 
+        return phoneno
+    
+    def clean_age(self):
+        age = self.cleaned_data['age']
+        if len(str(age))<=15:
+            raise forms.ValidationError('age must be 15 years')
+        
+    def clean_aadhar(self):
+        aadhar = self.cleaned_data['aadhar']
+        if len(str(aadhar))!=12:
+            raise forms.ValidationError('aadhar no must contain 12 numbers')

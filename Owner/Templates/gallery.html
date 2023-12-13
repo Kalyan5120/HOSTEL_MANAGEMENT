@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>gallery page</title>
 </head>
 <body>
-    <h1>Personal Details</h1>
-    <form action="" method="post">
+    <h1>Gallery Page</h1>
+    <form action="" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <table>
             {{form}}
         </table>
-        <input type="submit" value="edit">
+        <input type="submit" value="save">
     </form>
 </body>
 </html>
