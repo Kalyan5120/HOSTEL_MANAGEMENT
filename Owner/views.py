@@ -130,7 +130,7 @@ def room_details_view(request):
     if request.method=='POST':
         form=room_details_form(request.POST)
         if form.is_valid():
-            # form.save()
+            form.save()
             hostel_id=form.cleaned_data['hostel_id'].hostel_id
             return redirect(f'/Owner/bed_details/{hostel_id}/')
     return render(request=request,template_name='room_details.html',context={'form':form})
