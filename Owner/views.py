@@ -19,7 +19,7 @@ def owner_registration_view(request):
         form=Owner_registration_form(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('/Owner/o_login')
+            return redirect('/Owner/owner_login')
     return render(request=request,template_name='owner_registration.html',context={'form':form})
 
 
@@ -50,7 +50,7 @@ def owner_home_view(request):
 
 otp_confirm=None
 
-@login_required(login_url='/Owner/owner_login')
+
 def forgetpassword_view(request):
     res=Owner_registration_model.objects.all().values_list('email')    
     global otp_confirm

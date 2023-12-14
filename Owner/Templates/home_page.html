@@ -8,6 +8,7 @@
 <body>
     <h1>Owner Home page</h1>
     <form action="" method="post">
+        {% csrf_token %}
         <a href="">Personal Details</a>
         <a href="{% url 'owner:hostel_details' %}">Add Hostel</a>
         <a href="">Add Customer</a>
