@@ -172,14 +172,22 @@ def occupied_details_view(request):
 
 #list CRUD operations
 
-def hostel_update_view(request):
-    form=hostel_details_form()
+def hostel_update_view(request,pk):
+    res=hostel_details_form(instance=hostel_details_model.objects.filter(hostel_id=pk))
     if request.method=='POST':
-        form=hostel_details_form(request.POST)
-        if form.is_valid():
-            print(form)
-            return HttpResponse('hostel details updated')
+        res=hostel_details_form(request.POST,instance=hostel_details_model.objects.filter(hostel_id=pk)).update(
+            hostel_name=request.POST['hostel_name'],
+            type_of_hostel=request.POST['type_of_hostel'],
+            owner_email=request.POST['owner_email'],
+            owner_phone_no=request.POST['owner_phone_no']
+        )
+        if res.is_valid():
+            res.save()
+            return HttpResponse('data is updated')
         else:
-            return HttpResponse('data is not updated')
-        
-    return render(request=request,template_name='hostel_update.html',context={'form':form})
+            return HttpResponse('data is updated')
+   
+    return render(request=request,template_name='hostel_update.html',context={'res':res})
+
+
+

@@ -18,5 +18,5 @@ urlpatterns=[
     path(route='bed_details/<int:pk>/',view=bed_details_view,name='bed_details'),
     path(route='occupied_details/',view=occupied_details_view,name='occupied_details'),
     path(route='list/',view=list_view,name='list'),
-    path(route='update/',view=hostel_update_view,name='update')
+    path(route='update/<int:pk>/',view=hostel_update_view,name='update')
 ]
