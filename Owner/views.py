@@ -92,7 +92,7 @@ def changepswrd_view(request,pk):
     return render(request=request,template_name='change_pswrd.html',context={'form':form})
 
 
-#hostel_details
+#hostel_details CRUD operations
 
 def hostel_details_view(request):
     form=hostel_details_form()
@@ -106,6 +106,21 @@ def hostel_details_view(request):
                 form.save()
                 return redirect('/Owner/room_details')
     return render(request=request,template_name='hostel_details.html',context={'form':form})
+
+
+@login_required(login_url='/Owner/owner_login')
+def hostel_update_view(request,pk):
+    res=hostel_details_model.objects.get(hostel_id=pk)
+    if request.method=='POST':
+        print(request.user.id,pk)
+        form=hostel_details_model.objects.filter(owner_id=request.user.id,hostel_id=pk).update(hostel_name=request.POST['name'],
+                                                                                               type_of_hostel=request.POST['type'],
+                                                                                               owner_email=request.POST['email'],
+                                                                                               owner_phone_no=request.POST['phone_no'])
+        print(form)
+        messages.success(request,"Data is updated")
+        return redirect('/Owner/list/')
+    return render(request=request,template_name='hostel_update.html',context={'res':res})
 
 
 
@@ -149,7 +164,7 @@ def list_view(request):
 
 
 
-#bed_details CRUD operations
+#======== bed_details CRUD operations ===========
 
 def bed_details_view(request,pk):
     form=bed_details_form(hostel=pk)
@@ -167,27 +182,6 @@ def occupied_details_view(request):
     if request.method=='POST':
         form=occupied_details_form(request.POST)
     return render(request=request,template_name='occupied_details.html',context={'form':form})
-
-
-
-#list CRUD operations
-
-def hostel_update_view(request,pk):
-    res=hostel_details_form(instance=hostel_details_model.objects.filter(hostel_id=pk))
-    if request.method=='POST':
-        res=hostel_details_form(request.POST,instance=hostel_details_model.objects.filter(hostel_id=pk)).update(
-            hostel_name=request.POST['hostel_name'],
-            type_of_hostel=request.POST['type_of_hostel'],
-            owner_email=request.POST['owner_email'],
-            owner_phone_no=request.POST['owner_phone_no']
-        )
-        if res.is_valid():
-            res.save()
-            return HttpResponse('data is updated')
-        else:
-            return HttpResponse('data is updated')
-   
-    return render(request=request,template_name='hostel_update.html',context={'res':res})
 
 
 

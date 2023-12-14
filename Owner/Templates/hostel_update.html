@@ -9,11 +9,19 @@
     <h1>Hostel Update</h1>
         <form action="" method="post">
             {% csrf_token %}
-            <table>
-                {{form}}
-            </table>
-            <input type="submit" value="update">
-        </form>
-   
+                <label for="id_name">hostel_name</label>
+                <input type="text" name="name" id="id_name" value="{{res.hostel_name}}"><br>
+
+                <label for="id_type">hostel_type</label>
+                <input type="text" name="type" id="id_type" value="{{res.type_of_hostel}}"><br>
+
+                <label for="id_phone_no">owner_phone_no</label>
+                <input type="text" name="phone_no" id="id_phone_no" value="{{res.owner_phone_no}}"><br>
+
+                <label for="id_email">owner_email</label>
+                <input type="text" name="email" id="id_email" value="{{res.owner_email}}">
+                <br>
+                <input type="submit" value="update">
+        </form>  
 </body>
 </html>

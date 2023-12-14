@@ -9,9 +9,9 @@
     <h1>Owner Home page</h1>
     <form action="" method="post">
         <a href="">Personal Details</a>
-        <a href="">Add Hostel</a>
+        <a href="{% url 'owner:hostel_details' %}">Add Hostel</a>
         <a href="">Add Customer</a>
-        <a href="">Customer_list</a>
+        <a href="{% url 'owner:list' %}">Customer_list</a>
         <input type="submit" value="logout">
     </form>
 </body>
