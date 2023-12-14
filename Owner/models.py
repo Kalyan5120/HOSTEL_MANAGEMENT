@@ -19,8 +19,7 @@ class hostel_details_model(models.Model):
     owner_id=models.PositiveIntegerField()
     owner_phone_no=models.PositiveBigIntegerField(unique=True)
     owner_email=models.EmailField(unique=True)
-    vaccancy=models.PositiveBigIntegerField()
-    rating=models.DecimalField(max_digits=2,decimal_places=1)
+    location=models.CharField(max_length=50,default='Hyderabad')
     def __str__(self):
         return self.hostel_name
 

@@ -128,8 +128,8 @@ class changepswrd_form(forms.Form):
 class hostel_details_form(forms.ModelForm):
     class Meta:
         model=hostel_details_model
-        fields='__all__'
-
+        exclude=['owner_id','hostel_owner_name']
+    
     def clean_phoneno(self):
         phoneno = self.cleaned_data['owner_phone_no']
         if len(str(phoneno))!=10:
@@ -165,6 +165,12 @@ class bed_details_form(forms.ModelForm):
     class Meta:
         model=bed_details_model
         fields='__all__'
+
+    def __init__(self,*args,**kwargs):
+        hostel=kwargs.pop('hostel',None)
+        print(hostel)
+        super(bed_details_form,self).__init__(*args,**kwargs)
+        self.fields['room_no']=forms.ModelChoiceField(queryset=rooms_details_model.objects.filter(hostel_id=hostel))
 
     def clean(self):
         room=self.cleaned_data['room_no'].room_no

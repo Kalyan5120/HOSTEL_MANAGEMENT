@@ -99,8 +99,12 @@ def hostel_details_view(request):
     if request.method=='POST':
         form=hostel_details_form(request.POST)
         if form.is_valid():
-            form.save()
-        return redirect('/Owner/room_details')
+            data=form.save(commit=False)
+            data.owner_id=request.user.id
+            data.hostel_owner_name=request.user.first_name
+            if data:
+                form.save()
+                return redirect('/Owner/room_details')
     return render(request=request,template_name='hostel_details.html',context={'form':form})
 
 
@@ -135,19 +139,26 @@ def room_details_view(request):
             return redirect(f'/Owner/bed_details/{hostel_id}/')
     return render(request=request,template_name='room_details.html',context={'form':form})
 
+#list CRUD operations
+
 def list_view(request):
     hostel_details=hostel_details_model.objects.all()
     room_details=rooms_details_model.objects.all()
     bed_details=bed_details_model.objects.all()
     return render(request=request,template_name='list.html',context={'hostel_details':hostel_details,'room_details':room_details,'bed_details':bed_details})
 
+
+
+#bed_details CRUD operations
+
 def bed_details_view(request,pk):
-    form=bed_details_form()
+    form=bed_details_form(hostel=pk)
     if request.method=='POST':
         form=bed_details_form(request.POST)
         if form.is_valid():
             form.save()
             return redirect('/Owner/list')
+   
     return render(request=request,template_name='bed_details.html',context={'form':form,'hostel_id':pk})
 
 
