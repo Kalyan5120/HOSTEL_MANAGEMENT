@@ -139,7 +139,7 @@ def room_details_view(request):
             return redirect(f'/Owner/bed_details/{hostel_id}/')
     return render(request=request,template_name='room_details.html',context={'form':form})
 
-#list CRUD operations
+
 
 def list_view(request):
     hostel_details=hostel_details_model.objects.all()
@@ -167,3 +167,19 @@ def occupied_details_view(request):
     if request.method=='POST':
         form=occupied_details_form(request.POST)
     return render(request=request,template_name='occupied_details.html',context={'form':form})
+
+
+
+#list CRUD operations
+
+def hostel_update_view(request):
+    form=hostel_details_form()
+    if request.method=='POST':
+        form=hostel_details_form(request.POST)
+        if form.is_valid():
+            print(form)
+            return HttpResponse('hostel details updated')
+        else:
+            return HttpResponse('data is not updated')
+        
+    return render(request=request,template_name='hostel_update.html',context={'form':form})

@@ -1,5 +1,5 @@
 from django.urls import path
-from Owner.views import owner_view,owner_home_view,logout_view,owner_registration_view,forgetpassword_view,otp_confirm_view,changepswrd_view,hostel_details_view,gallery_view,comments_view,room_details_view,bed_details_view,occupied_details_view,list_view
+from Owner.views import owner_view,owner_home_view,logout_view,owner_registration_view,forgetpassword_view,otp_confirm_view,changepswrd_view,hostel_details_view,gallery_view,comments_view,room_details_view,bed_details_view,occupied_details_view,list_view,hostel_update_view
 
 app_name='owner'
 
@@ -17,5 +17,6 @@ urlpatterns=[
     path(route='room_details/',view=room_details_view,name='room_details'),
     path(route='bed_details/<int:pk>/',view=bed_details_view,name='bed_details'),
     path(route='occupied_details/',view=occupied_details_view,name='occupied_details'),
-    path(route='list/',view=list_view,name='list')
+    path(route='list/',view=list_view,name='list'),
+    path(route='update/',view=hostel_update_view,name='update')
 ]
