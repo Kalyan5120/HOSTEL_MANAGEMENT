@@ -154,7 +154,7 @@ def list_view(request):
 def bed_details_view(request,pk):
     form=bed_details_form(hostel=pk)
     if request.method=='POST':
-        form=bed_details_form(request.POST)
+        form=bed_details_form(request.POST,hostel=pk)
         if form.is_valid():
             form.save()
             return redirect('/Owner/list')

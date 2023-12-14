@@ -168,18 +168,17 @@ class bed_details_form(forms.ModelForm):
 
     def __init__(self,*args,**kwargs):
         hostel=kwargs.pop('hostel',None)
-        print(hostel)
         super(bed_details_form,self).__init__(*args,**kwargs)
         self.fields['room_no']=forms.ModelChoiceField(queryset=rooms_details_model.objects.filter(hostel_id=hostel))
-
+    
     def clean(self):
-        room=self.cleaned_data['room_no'].room_no
+        room=(rooms_details_model.objects.get(room_id=self.data['room_no']))
         bed=self.cleaned_data['bed_no']
-        res=rooms_details_model.objects.get(hostel_id=int(self.data['hid']),room_no=room)
+        res=rooms_details_model.objects.get(hostel_id=int(self.data['hid']),room_no=room.room_no)
         if int(bed)>int(res.num_of_beds):
             raise forms.ValidationError(f'Bed Number Should be below {int(res.num_of_beds)+1}')
         bed=self.cleaned_data['bed_no']
-        if (bed,)  in bed_details_model.objects.filter(room_no_id=self.cleaned_data['room_no'].room_id).values_list('bed_no'):
+        if (bed,)  in bed_details_model.objects.filter(room_no_id=room.room_id).values_list('bed_no'):
             raise forms.ValidationError(f"Bed no {bed} already exist")
 
 

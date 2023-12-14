@@ -10,38 +10,47 @@
     {% csrf_token %}
     <table border="2" cellpadding="5" cellspacing="0">
         <tr>
-            <th>Hostel_name</th>
-            <th>Room_num</th>
-            <th>bed_details</th>
-            <th>Update</th>
+            <th>Hostel_Name</th>
+            <th>Room_Details</th>
         </tr>
             {% for i in hostel_details %}
-        <tr>
-            <td rowspan="3">{{i.hostel_name}}</td> 
-            {% for j in room_details %}
-            <td>{{j.room_no}}</td>
-            <td>
-                <table border="2" cellpadding="5" cellspacing="0">
-                    <tr>
-                        <th>Bed_num</th>
-                        <th>Cost</th>
-                        <th>Availability</th>
-                    </tr>
-                    {% for k in bed_details %}
-                    <tr>
-                       {% if j == k.room_no %}
-                       <td>{{k.bed_no}}</td>
-                        <td>{{k.bed_cost}}</td>
-                        <td>{{k.availability}}</td>
-                       {% endif %}
-                    </tr>
-                    {% endfor %}
-                </table>
-            </td>
-        </tr>
-        {% endfor %}
-        {% endfor %}
+            <tr>
+                <td>{{i.hostel_name}}</td>
+                <td>
+                    <table border="2" cellpadding="5" cellspacing="0">
+                        <tr>
+                            <th>Room_num</th>
+                            <th>Bed Details</th>
+                        </tr>
+                        {% for j in room_details %}
+                        {% if j.hostel_id == i %}
+                        <tr>
+                            <td>{{j.room_no}} </td>
+                            <td>
+                            <table border="2">
+                                <tr>
+                                        <th>Bed_num</th>
+                                        <th>Cost</th>
+                                        <th>Availability</th>
+                                </tr>
+                                {% for k in bed_details %}
+                                {% if j == k.room_no %}
+                                <tr>
+                                    <td>{{k.bed_no}}</td>
+                                    <td>{{k.bed_cost}}</td>
+                                    <td>{{k.availability}}</td>
+                                </tr>
+                                {% endif %}
+                                {% endfor %}
+                            </table>
+                            </td>   
+                        </tr>
+                        {% endif %}
+                        {% endfor %}
+                   </table>
+                </td>             
+            </tr>
+             {% endfor %}
     </table>
-    
 </body>
 </html>
