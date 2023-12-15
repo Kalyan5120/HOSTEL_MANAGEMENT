@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block title %}
+    <title>Document</title>
+    {% endblock %}
+    {% load static %}
+    <style>
+*{
+    padding: 0%;
+    margin: 0%;
+    box-sizing: border-box;
+  }      
+#main{
+    display: flex;
+    justify-content: space-evenly;
+    height: 20%;
+}
+#img1{
+    border: 2px solid;
+    height: 80%;
+    width: 50%;
+}
+    </style>
+</head>
+<body>
+    <div id="main">
+        <div ><img id="img1" src="{% static 'images/imagelogo1.jpg.' %}" alt=""></div>
+        <div><h1>EASY STAY<sub>-"WILL SAVE YOUR TIME AND ENERGY"</sub></h1></div>
+        <div><img src="{% static 'images/bx-menu.svg' %}" alt=""></div>
+    </div>
+</body>
+</html>

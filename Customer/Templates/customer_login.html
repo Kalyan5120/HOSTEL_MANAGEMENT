@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>customer login</title>
     {% load static %}
-    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <!-- <link rel="stylesheet" href="{% static 'css/login.css' %}"> -->
     <link rel="shortcut icon" href="{% static 'images/Imagelogo2.jpg' %}">
 
-    <style>
+    <!-- <style>
         body{
             background-image: url('{% static "images/Imagelogo1.1.jpg" %}');
             background-repeat: no-repeat;
@@ -29,9 +29,12 @@
             /* padding-top: 10%; */
             text-shadow: 5px 5px 2px gray;
         }
-    </style>
+    </style> -->
 </head>
 <body>
+    <div>
+        {% include 'partials/_header.html'%}
+    </div>
     <marquee id="marquee" direction="right">EASY_STAY</marquee>
     <div>
         <div id="login">
