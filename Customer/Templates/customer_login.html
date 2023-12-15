@@ -6,45 +6,53 @@
     <title>customer login</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/login.css' %}">
-    <link rel="shortcut icon" href="{% static 'images/Image7.jpg' %}">
-    <!-- <link rel="shortcut icon" href="../static/images/image8.jpg"> -->
+    <link rel="shortcut icon" href="{% static 'images/Imagelogo2.jpg' %}">
+
     <style>
         body{
-            background-image: url('{% static "images/Image7.jpg" %}');
+            background-image: url('{% static "images/Imagelogo1.1.jpg" %}');
             background-repeat: no-repeat;
             background-position: center;
             background-size: cover; 
-        }
+            height: 100vh; */
+            /* opacity: 0.5; */
+         }
         #marquee{
             /* border: 2px solid red; */
             /* height: 1000px; */
-            color:grey;
+            color:rgb(160, 5, 5);
             font-size: 80px;
             font-family: cursive;
             font-style: italic;
             font-weight: bolder;
+            opacity: 0.4;
             /* padding-top: 10%; */
+            text-shadow: 5px 5px 2px gray;
         }
     </style>
 </head>
 <body>
     <marquee id="marquee" direction="right">ESAY_STAY</marquee>
-    <div id="login">
-        <h1>Customer_login Page</h1>
-        {% for i in messages %}
-        <h3>{{i}}</h3>
-        {% endfor %}
-    <form action="" method="post">
-        {% csrf_token %}
-        <table>
-            {{form}}
-        </table>
-        <input type="submit" value="login"><br>
-        <a href="{% url 'customer:forgetpswrd' %}">Forget password?</a>
-    </form>
-    
-    <h1>New user?</h1>
-    <a href="{% url 'customer:c_register' %}"><button>Register</button></a>
+    <div>
+        <div id="login">
+            <h1>Customer_login Page</h1>
+            <div id="sub_log">
+            {% for i in messages %}
+            <h3>{{i}}</h3>
+            {% endfor %}
+        <form action="" method="post">
+            {% csrf_token %}
+            <table>
+                {{form}}
+            </table>
+            <input class="button" type="submit" value="login"><br>
+            <a href="{% url 'customer:forgetpswrd' %}">Forget password?</a>
+        </form>
+        
+        <h1>New user?</h1>
+        <a href="{% url 'customer:c_register' %}"><button class="button">Register</button></a>
+            </div>
+        </div>
     </div>
 </body>
 </html>
