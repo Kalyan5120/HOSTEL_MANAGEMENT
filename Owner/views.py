@@ -111,17 +111,16 @@ def hostel_details_view(request):
 
 @login_required(login_url='/Owner/owner_login')
 def hostel_update_view(request,pk):
-    res=hostel_details_model.objects.get(hostel_id=pk)
+    form=hostel_details_model.objects.get(hostel_id=pk)
     if request.method=='POST':
         print(request.user.id,pk)
         form=hostel_details_model.objects.filter(owner_id=request.user.id,hostel_id=pk).update(hostel_name=request.POST['name'],
-                                                                                               type_of_hostel=request.POST['type'],
+                                                                                               type_of_hostel=request.POST['type_of_hostel'],
                                                                                                owner_email=request.POST['email'],
                                                                                                owner_phone_no=request.POST['phone_no'])
-        print(form)
         messages.success(request,"Data is updated")
         return redirect('/Owner/list/')
-    return render(request=request,template_name='hostel_update.html',context={'res':res})
+    return render(request=request,template_name='hostel_update.html',context={'form':form})
 
 
 
@@ -178,11 +177,33 @@ def bed_details_view(request,pk):
     return render(request=request,template_name='bed_details.html',context={'form':form,'hostel_id':pk})
 
 
+def update_bed_view(request,pk):
+    form=bed_details_form(instance=bed_details_model.objects.get(bed_id=pk))
+    if request.method=='POST':
+        form=bed_details_form(request.POST,instance=bed_details_model.objects.get(bed_id=pk))
+        if form.is_valid():
+            form.save()            
+            return redirect('/Owner/bed_details')   
+        else:
+            return HttpResponse('data is not updated')  
+    return render(request=request,template_name='update_bed.html',context={'form':form})
+
+
+
+
 def occupied_details_view(request):
     form=occupied_details_form()
     if request.method=='POST':
         form=occupied_details_form(request.POST)
     return render(request=request,template_name='occupied_details.html',context={'form':form})
 
-
-
+def occupied_update_view(request,pk):
+    form=occupied_details_form(instance=occupied_details_model.objects.get(occ_id=pk))
+    if request.method=='POST':
+        form=occupied_details_form(request.POST,instance=occupied_details_model.objects.get(occ_id=pk))
+        if form.is_valid():
+            form.save()
+            return HttpResponse('data is updated')
+        else:
+            return HttpResponse('data is not updated')
+    return render(request=request,template_name='occupied_update.html',context={'form':form})
