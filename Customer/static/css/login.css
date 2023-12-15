@@ -10,7 +10,7 @@
     border: 5px solid rgb(227, 185, 185);
     height: 500px;
     width: 500px;
-    background-image: linear-gradient(orange,red);
+    background-image: linear-gradient(rgb(109, 168, 220),rgb(213, 125, 196));
     /* background-color: rgb(209, 218, 218); */
     margin-left: 63%;
     margin-top: 0%;
@@ -54,4 +54,5 @@
 h1{
     color: rgb(29, 47, 12);
     text-shadow: 0px 0px 10px white ;
+    padding-top: 5%;
 }
