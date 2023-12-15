@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>owner_login</title>
     
 </head>
 <body>
@@ -14,11 +14,11 @@
         <table>
             {{form}}
         </table>
-        <input type="submit" value="login">
+        <input type="submit" value="login"><br>
         <a href="{% url 'owner:forgetpswrd' %}">Forget password?</a>
     </form>
-    
-    
+        <h1>New user?</h1>
+        <a href="{% url 'owner:o_regsiter' %}"><button>Register</button></a>   
     </div>
 </body>
 </html>

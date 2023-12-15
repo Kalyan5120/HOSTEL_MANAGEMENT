@@ -130,7 +130,7 @@ class hostel_details_form(forms.ModelForm):
         model=hostel_details_model
         exclude=['owner_id','hostel_owner_name']
     
-    def clean_owner_phone_no(self):
+    def clean_owner_phone_cdno(self):
         phoneno = self.cleaned_data['owner_phone_no']
         if len(str(phoneno))!=10:
             raise forms.ValidationError('phoneno must be 10 numbers')

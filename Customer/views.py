@@ -51,6 +51,7 @@ def p_details_view(request):
 def logout_view(request):
     logout(request)
     return redirect('/Customer/customer_login')
+    
 
 
 @login_required(login_url='/Customer/customer_login')

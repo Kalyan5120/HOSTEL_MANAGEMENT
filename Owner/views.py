@@ -38,7 +38,8 @@ def owner_view(request):
 @login_required(login_url='/Owner/owner_login')
 def logout_view(request):
     logout(request)
-    return redirect('/Owner/o_login')
+    print(request.user)
+    return redirect('/Owner/owner_login')
 
 
 @login_required(login_url='/Owner/owner_login')
