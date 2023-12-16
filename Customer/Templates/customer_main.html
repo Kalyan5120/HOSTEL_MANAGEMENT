@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EASY_STAY</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/c_main.css' %}">
+    <link rel="shortcut icon" href="{% static 'images/Imagelogo2.jpg' %}">
+<style>
+*{
+    padding: 0%;
+    margin: 0%;
+    box-sizing: border-box;
+   
+}      
+body{
+    background-image:url('{% static "images/home-blur.jpg" %}');
+    background-repeat: no-repeat;
+    background-size:100% 110vh;
+    /* opacity: 0.2; */
+}
+#reg{
+    margin-top: 10%;
+    margin-left: 0%;
+    border: 2px solid black;
+    height: 100px;
+    width: 30%;
+    display: flex;
+
+    align-items: center;
+}
+button{
+    height: 50%;
+}
+
+</style>
+</head>
+<body>
+    <div>
+        {% include 'partials/_header.html' %}
+    </div>
+    <div id="reg">
+        <a href="{% url 'customer:c_register' %}"><button>Registration</button></a>
+        <a href="{% url 'customer:customer_login' %}"><button>Login</button></a>
+    </div>
+    <!-- <h1>hai</h1> -->
+</body>
+</html>

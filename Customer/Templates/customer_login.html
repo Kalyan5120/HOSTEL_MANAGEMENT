@@ -5,27 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>customer login</title>
     {% load static %}
-    <!-- <link rel="stylesheet" href="{% static 'css/login.css' %}"> -->
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
     <link rel="shortcut icon" href="{% static 'images/Imagelogo2.jpg' %}">
-
-    <!-- <style>
+    <style>
         body{
-            background-image: url('{% static "images/Imagelogo1.1.jpg" %}');
-            background-repeat: no-repeat;
-            background-position: center;
-            background-size: cover; 
-            height: 100vh; */
-            /* opacity: 0.5; */
-         }
-        
-    </style> -->
+
+    background-image: url('{% static "images/login..jpg" %}');
+    background-repeat: no-repeat;
+    background-size:100% 110vh;
+
+}
+    </style>
+
 </head>
 <body>
     <div>
-        {% include 'partials/_header.html'%}
-   
+        {% include 'partials/_header.html' %}
+    </div>
+    <div>
         <div id="login">
-            <h1>Customer login Page</h1>
+            <h1>Customer login</h1>
             <div id="sub_log">
             {% for i in messages %}
             <h3>{{i}}</h3>
@@ -39,7 +38,7 @@
             <a href="{% url 'customer:forgetpswrd' %}">Forget password?</a>
         </form>
         
-        <h2>New user?</h2>
+        <h3>New user?</h3>
         <a href="{% url 'customer:c_register' %}"><button class="button">Register</button></a>
             </div>
         </div>
