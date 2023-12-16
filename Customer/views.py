@@ -106,4 +106,6 @@ def changepswrd_view(request,pk):
     return render(request=request,template_name='changepswrd.html',context={'form':form})
 
 
+def customer_main_view(request):
+    return render(request=request,template_name='customer_main.html')
     

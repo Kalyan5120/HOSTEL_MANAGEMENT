@@ -207,3 +207,7 @@ def occupied_update_view(request,pk):
         else:
             return HttpResponse('data is not updated')
     return render(request=request,template_name='occupied_update.html',context={'form':form})
+
+
+def owner_main_view(request):
+    return render(request=request,template_name='owner_main.html')
