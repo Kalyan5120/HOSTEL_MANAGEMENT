@@ -1,49 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>EASY_STAY</title>
     {% load static %}
-    <link rel="stylesheet" href="{% static 'css/c_main.css' %}">
-    <link rel="shortcut icon" href="{% static 'images/Imagelogo2.jpg' %}">
-<style>
-*{
-    padding: 0%;
-    margin: 0%;
-    box-sizing: border-box;
-   
-}      
-body{
-    background-image:url('{% static "images/home-blur.jpg" %}');
-    background-repeat: no-repeat;
-    background-size:100% 110vh;
-    /* opacity: 0.2; */
-}
-#reg{
-    margin-top: 10%;
-    margin-left: 0%;
-    border: 2px solid black;
-    height: 100px;
-    width: 30%;
-    display: flex;
+    <link rel="stylesheet" href="{% static 'css/c_main.css' %}" />
+    <link rel="shortcut icon" href="{% static 'images/Imagelogo2.jpg' %}" />
+    <style>
+      * {
+        padding: 0%;
+        margin: 0%;
+        box-sizing: border-box;
+      
+      }
+      body {
+        background-image: url('{% static "images/home-blur.jpg" %}');
+        background-repeat: no-repeat;
+        background-size: 100% 110vh;
+        /* opacity: 0.2; */
+      }
+      #reg {
+        /* margin-top: 10%; */
+        margin-right: 5%; 
+        border: 3px solid rgb(39, 47, 37);
+        height: 55%;
+        width: 20%;
+        padding:50px;
 
-    align-items: center;
-}
-button{
-    height: 50%;
-}
-
-</style>
-</head>
-<body>
-    <div>
-        {% include 'partials/_header.html' %}
-    </div>
-    <div id="reg">
-        <a href="{% url 'customer:c_register' %}"><button>Registration</button></a>
-        <a href="{% url 'customer:customer_login' %}"><button>Login</button></a>
+       
+        /* background-color: #fff; */
+      }
+      #reg:hover{
+        background-color: rgba(14, 17, 16, 0.562);
+        /* box-shadow: -20px -20px 3px rgba(0, 0, 0, 0.597); */
+        border-color: antiquewhite;
+        /* border: none; */
+        border-radius: 20px;
+        /* background-color:black; */
+        /* transform: translatex(10px) rotate(360deg); */
+      }
+      .btn {
+        height: 40px;
+        width: 200px;
+        background-color: rgba(127, 255, 212, 0.585);
+        font-weight: bolder;
+        font-size: larger;
+        font-family: 'Times New Roman', Times, serif;
+      }
+      .btn:hover{
+        border-radius: 20px;
+        border-color: antiquewhite;
+        /* box-shadow: -10px -10px 3px black; */
+      }
+      #content{
+        /* border: 2px solid red; */
+        width: 50%;
+        margin-top: 6%;
+        margin-left: 5%;
+        text-align: center;
+        padding: 5%;
+        background-color: rgba(0, 0, 0, 0.467);
+        /* background-color: rgba(95, 158, 160, 0.162); */
+        /* color: rgb(215, 169, 136); */
+      }
+      #main{
+        /* border: 1px solid black; */
+        display: flex;
+        width: 100%;
+        height: 80vh;
+        /* color: rgba(36, 82, 16, 0.975); */
+        color: rgba(127, 255, 212, 0.585);
+        
+        text-shadow: 3px 3px 2px rgb(23, 23, 23);
+      }
+    </style>
+  </head>
+  <body>
+    <div>{% include 'partials/_header.html' %}</div>
+    <div id="main">
+      <div id="content">
+        <h1>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus
+          iusto provident odit, amet molestias libero architecto numquam ratione a
+          odio qui! Tempora praesentium explicabo id laborum, blanditiis esse
+          tempore! Aperiam dignissimos veniam, amet aliquam quisquam modi vitae
+          
+        </h1>
+      </div>
+      <div id="reg">
+        <h2>New User ?</h2>
+        <br />
+        <a href="{% url 'customer:c_register' %}"
+          ><button class="btn">Registration</button></a
+        >
+        <br />
+        <br />
+        <h2>Already a User ?</h2>
+        <br />
+        <a href="{% url 'customer:customer_login' %}"
+          ><button class="btn">Login</button></a
+        >
+      </div>
     </div>
     <!-- <h1>hai</h1> -->
-</body>
+  </body>
 </html>

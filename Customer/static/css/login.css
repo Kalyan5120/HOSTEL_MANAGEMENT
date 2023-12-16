@@ -31,11 +31,12 @@
 #sub_log:hover{
     box-shadow: 10px 10px 5px ;
     font-family: 'Kalam', cursive;
+    /* border-left: 3px solid black; */
     
 }
 .button{
     height: 35px;
-    width: 150px;
+    width: 180px;
     font-size: larger;
     /* margin-left: 5%; */
     background-color:rgb(156, 238, 211);
