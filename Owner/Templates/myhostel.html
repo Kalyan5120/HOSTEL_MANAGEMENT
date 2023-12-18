@@ -16,6 +16,7 @@
             <th>phone</th>
             <th>avalibality</th>
             <th>room_list</th>
+            <th>Gallery</th>
             <th>Update</th>
             <th>Delete</th>
         </tr>
@@ -28,8 +29,19 @@
             <td>{{hostel.owner_phone_no}}</td>
             <td>0</td>
             <td><a href="{% url 'owner:hostel_list' pk=hostel.hostel_id %}"><button>Room_list</button></a></td>
+            <td><a href="{% url 'owner:gallery' pk=hostel.hostel_id %}"><button>Add Images</button></a><br><br>
+                <a href="{% url 'owner:gallery_images' pk=hostel.hostel_id %}"> <button>List images</button></a>
+            </td>
             <td><a href="{% url 'owner:hostel_update' pk=hostel.hostel_id %}"><button>Update</button></a></td>
             <td><a href="{% url 'owner:hostel_delete' pk=hostel.hostel_id %}"><button>Delete</button></a></td>
+            <td>
+            {% for i in images %}
+                {% if i.hostel_id == hostel.hostel_id %}
+                    <img src="{{i.images.url}}" alt="" height="75" width="75">
+                {% endif %}
+            {% endfor %}
+        </td>
+
         </tr>
             {% endfor %}
     </table>

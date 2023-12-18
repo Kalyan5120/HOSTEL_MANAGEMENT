@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.hashers import make_password
-from Customer.models import customer_register
+from Customer.models import customer_register,customer_book
 from django.contrib.auth.models import User
 from Customer.validators import clean_enter_new_password
 import re
@@ -138,3 +138,11 @@ class changepswrd_form(forms.Form):
             return pswrd
     
 
+
+class book_room_form(forms.ModelForm):
+    class Meta:
+        model=customer_book
+        exclude=['approved', 'service_agreement','hostel_id','room_id','bed_id']
+
+
+        
