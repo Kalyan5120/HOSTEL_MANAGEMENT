@@ -108,4 +108,7 @@ def changepswrd_view(request,pk):
 
 def customer_main_view(request):
     return render(request=request,template_name='customer_main.html')
+
+def easy_stay_view(request):
+    return render(request=request,template_name='easy_stay.html')
     

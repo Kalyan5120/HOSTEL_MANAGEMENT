@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}
+    <!-- <link rel="stylesheet" href="{% static 'css/home.css' %}"> -->
+    <link rel="shortcut icon" href="{% static 'images/Imagelogo2.jpg' %}">
+    <style>
+     * {
+        padding: 0%;
+        margin: 0%;
+        box-sizing: border-box;
+      
+      }
+      body {
+        background-image: url('{% static "images/easy1.jpg" %}');
+        background-repeat: no-repeat;
+        background-size: 100% 110vh;
+        /* background: fixed; */
+        /* opacity: 0.2; */
+      }
+      #wel{
+        /* border: 2px solid black; */
+        height: 30%;
+        text-align: center;
+        color: rgb(33, 234, 234);
+        font-size: xx-large;
+        /* padding: ; */
+      }
+      #e1{
+        color: crimson;
+        font-size: 400px;
+        opacity: 0.2;
+      
+        /* font-family: cursive; */
+      }
+      #to{
+          /* border: 2px solid black; */
+          height: 30%;
+        text-align: center;
+        color: black;
+        font-size: xx-large;   
+        /* padding: 1%; */
+        margin: 4%;
+      }
+      #to ul{
+        list-style: none;
+      }
+      #search{
+        height: 50px;
+        width: 40%;
+        margin-left:30%;
+        border-radius: 23px;
+        font-size: larger;
+        text-align: center;    
+        /* margin-; */
+        /* background: transparent; */
+        /* background-color: rgb(7, 205, 132); */
+      }
+      button{
+        height: 45px;
+        width: 200px;
+        font-size: 30px;
+        background-color: aquamarine;
+        border-radius: 15px;
+        margin-left: 5%;
+      }
+      button:hover{
+        background-color: red;
+      }
+      #join{
+
+      }
+    </style>
+</head>
+<body>
+  <div>
+    {% include 'partials/_header.html' %}
+  </div>
+  <div>
+      <div id="wel">
+        <h1>Welcome's you</h1>
+      </div>
+        <div id="to">
+          <ul>
+            <li>'Join us if you plan to build a hostel business.' </li>
+            <br>
+            <a href="{% url 'owner:owner_register' %}"><button>Join Us</button></a>
+            <br>
+            <br><br>
+            <br>
+            <li>'Come along if you want to find the best hostels.'</li>
+          </ul>
+        </div>  
+  </div>
+  <!-- search starts -->
+  <div>
+    <input type="search" name="search" id="search" placeholder="Search for hostels">
+  </div>
+<br><br>
+<!-- search end -->
+
+
+<!-- cards start -->
+<div id="card">
+  <div class="sub_cards">
+    <img src="{% static 'images/image1.jpg' %}" alt="" class="image">
+<ul>
+    <li>hostel_name</li>
+    <li>area</li>
+    <li><a href="">more_details</a></li>
+</ul>
+</div>
+<div class="sub_cards">
+<img  src="{% static 'images/image1.jpg' %}" alt="" class="image">
+<div>
+    <ul>
+        <li>hostel_name</li>
+        <li>area</li>
+        <li><a href="">more_details</a></li>
+    </ul>
+</div>
+</div>
+<div class="sub_cards">
+<img src="{% static 'images/image1.jpg' %}" alt="" class="image">
+<ul>
+    <li>hostel_name</li>
+    <li>area</li>
+    <li><a href="">more_details</a></li>
+</ul>
+</div>
+</div>
+<!-- cards end -->
+</body>
+</html>

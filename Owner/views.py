@@ -151,6 +151,7 @@ def comments_view(request):
             return HttpResponse('/Owner/home')
     return render(request=request,template_name='comments.html',context={'form':form})
 
+ # ============== room_details CRUD operations ===============
 
 def room_details_view(request):
     form=room_details_form(hostel=request.user.id)
@@ -203,6 +204,8 @@ def room_list_view(request,pk):
     return render(request=request,template_name='room_list.html',context={'hostel_details':hostel_details,'room_details':room_details,'bed_details':bed_details})
 
 
+# ======== room_details CRUD operations =============
+
 
 #======== bed_details CRUD operations ===========
 
@@ -241,7 +244,10 @@ def delete_bed_view(request,pk):
     return render(request=request,template_name='bed_delete_confirm.html',context={'Bed':res})
 
 
+#======== bed_details CRUD operations end ===========
 
+
+#======== occupied_details CRUD operations ===========
 
 def occupied_details_view(request):
     form=occupied_details_form()
@@ -259,6 +265,8 @@ def occupied_update_view(request,pk):
         else:
             return HttpResponse('data is not updated')
     return render(request=request,template_name='occupied_update.html',context={'form':form})
+
+#======== occupied_details CRUD operations end ===========
 
 
 def owner_main_view(request):

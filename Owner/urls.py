@@ -6,7 +6,7 @@ app_name='owner'
 urlpatterns=[
     path(route='owner_main/',view=owner_main_view,name='o_main'),
 
-    path(route='owner_register/',view=owner_registration_view,name='o_regsiter'),
+    path(route='owner_register/',view=owner_registration_view,name='owner_register'),
     path(route='owner_login/',view=owner_view,name='owner_login'),
     path(route='owner_logout/',view=logout_view,name='owner_logout'),
 

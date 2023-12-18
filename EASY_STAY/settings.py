@@ -15,6 +15,7 @@ import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+TEMPLATES_DIRS=os.path.join(BASE_DIR,'templates')
 STATIC_ROOT=os.path.join(BASE_DIR,'static')
 CUSTOMER_STATIC_DIRS=os.path.join(os.path.join(BASE_DIR,'Customer'),'static')
 MEDIA_ROOT=os.path.join(BASE_DIR,'media')
@@ -58,7 +59,7 @@ ROOT_URLCONF = 'EASY_STAY.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [TEMPLATES_DIRS],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

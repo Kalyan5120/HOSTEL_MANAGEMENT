@@ -2,14 +2,14 @@
     margin: 0%;
     height: 700px;
 } */
-#home{
+/* #home{ */
     /* border: 2px solid red; */
-    margin-top: 2%;
+    /* margin-top: 2%;
     padding-left: 40%;
     font-size: large;
-    color: olive;
+    color: olive; */
     /* font-weight: 1000 px; */
-}
+/* } */
 #search
 {
 
@@ -29,12 +29,12 @@ button{
 button:hover{
     background-color: green;
 }
-/* #card{
+#card{
     border: 2px solid black; 
-    height: 350px;
+    height: 50%;
     display: flex;
     justify-content: space-around;
-}  */
+} 
 .sub_cards{
     border: 2px solid red;
     height: 300px;

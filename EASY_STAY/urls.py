@@ -16,12 +16,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
+from EASY_STAY.views import easy_stay_view
 from django.conf import settings
 from django.conf.urls.static import static
 
+app_name='easy_stay'
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path(route='',view=easy_stay_view,name='easy_stay'),
     path(route='Customer/',view=include('Customer.urls'),name='Customer'),
     path(route='Owner/',view=include('Owner.urls'),name='Owner')
 ]
