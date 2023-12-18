@@ -1,0 +1,39 @@
+*{
+    padding: 0%;
+    margin: 0%;
+    box-sizing: border-box;
+  
+}
+.main{
+    /* border: 2px solid; */
+    height: 95vh;
+
+    background-image: url("../images/imagelogo1.1.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    
+}
+#main1{
+    /* border: 2px solid red; */
+    /* /* height: 100%; */
+ width: 60%; 
+
+}
+#table caption{
+    text-align: center;
+    color: rgb(32, 69, 69);
+    text-decoration: underline;
+}
+#table{
+    margin-top: 2%;
+    border: 5px solid rgb(36, 8, 127);
+    height: 100%;
+    width:100%;
+    text-align: center;
+    background-color:transparent ;
+}
+#table th{
+    color: rgb(192, 71, 44);
+    background-color: rgb(132, 216, 249);
+}
