@@ -153,12 +153,27 @@ class room_details_form(forms.ModelForm):
     class Meta:
         model=rooms_details_model
         fields='__all__'
+    
+    def __init__(self,*args,**kwargs):
+        hostel=kwargs.pop('hostel',None)
+        super(room_details_form,self).__init__(*args,**kwargs)
+        self.fields['hostel_id']=forms.ModelChoiceField(queryset=hostel_details_model.objects.filter(owner_id=hostel))
 
     def clean_room_no(self):
         room=self.cleaned_data['room_no']
         if (room,)  in rooms_details_model.objects.filter(hostel_id=self.data['hostel_id']).values_list('room_no'):
             raise forms.ValidationError("room number already exist")
         return room
+    
+
+class room_update_form(forms.ModelForm):
+    class Meta:
+        model=rooms_details_model
+        fields='__all__'
+    def __init__(self,*args,**kwargs):
+        hostel=kwargs.pop('hostel',None)
+        super(room_update_form,self).__init__(*args,**kwargs)
+        self.fields['hostel_id']=forms.ModelChoiceField(queryset=hostel_details_model.objects.filter(owner_id=hostel))
 
 
 class bed_details_form(forms.ModelForm):
@@ -181,6 +196,10 @@ class bed_details_form(forms.ModelForm):
         if (bed,)  in bed_details_model.objects.filter(room_no_id=room.room_id).values_list('bed_no'):
             raise forms.ValidationError(f"Bed no {bed} already exist")
 
+class bed_update_form(forms.ModelForm):
+    class Meta:
+        model=bed_details_model
+        fields=['bed_no','bed_cost','availability']
 
 class occupied_details_form(forms.ModelForm):
     class Meta:

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List Page</title>
+</head>
+<body>
+    <h1>List Page</h1>
+    {% csrf_token %}
+    {% if room_details %}
+    <table border="2" cellpadding="5" cellspacing="0">
+        <tr>
+            <th>Hostel_Name</th>
+            <th>Room_Details</th>
+        </tr>
+            
+            <tr>
+                <td>{{hostel_details.hostel_name}}</td>
+                <td>
+                    <table border="2" cellpadding="5" cellspacing="0">
+                        <tr>
+                            <th>Room_num</th>
+                            <th>Bed Details </th>
+                        </tr>
+                        {% for j in room_details %}
+                        <tr>
+                            <td>{{j.room_no}} <br>
+                                <a href="{% url 'owner:room_update' pk=j.room_id %}"><button>Update</button></a><br>
+                                <a href="{% url 'owner:room_delete' pk=j.room_id %}"><button>delete</button></a><br>
+
+                            </td>
+                            <td>
+                            <table border="2">
+                                <tr>
+                                        <th>Bed_num</th>
+                                        <th>Cost</th>
+                                        <th>Availability</th>
+                                        <th>Update</th>
+                                        <th>Delete</th>
+
+                                </tr>
+                                {% for k in bed_details %}
+                                {% if j == k.room_no %}
+                                <tr>
+                                    <td>{{k.bed_no}}</td>
+                                    <td>{{k.bed_cost}}</td>
+                                    <td>{{k.availability}}</td>
+                                    <td><a href="{% url 'owner:bed_update' pk=k.bed_id%}"><button>Update</button></a></td>
+                                    <td><a href="{% url 'owner:bed_delete' pk=k.bed_id%}"><button>Delete</button></a></td>
+                                    
+                                </tr>
+                                {% endif %}
+                                {% endfor %}
+                                
+                            </table>
+                            </td>   
+                        </tr>
+                        {% endfor %}
+                        <a href="{% url 'owner:bed_details' pk=hostel_details.hostel_id %}"><button>Add Bed</button></a>
+                   </table>
+                   
+                </td>             
+            </tr>
+    </table>
+            {% else %}
+            <h3>Room details is not avaliable</h3>
+             {% endif %}
+             <a href="{% url 'owner:room_details'%}"><button>Add Room</button></a>
+                   <a href="{% url 'owner:myhostels'%}"><button>Home</button></a>
+</body>
+</html>

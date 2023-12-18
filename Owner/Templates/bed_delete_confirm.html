@@ -3,17 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hostel_details</title>
+    <title>Document</title>
 </head>
 <body>
-    <h1>Hostel_Details</h1>
+    <h1>Bed Delete Details</h1>
     <form action="" method="post">
         {% csrf_token %}
-        <table>
-            {{form}}
-        </table>
-        <input type="submit" value="save">
+        <h1>are you sure delete Bed id: {{Bed.bed_id}}</h1>
+        <h2>Bed No: {{Bed.bed_no}}</h2>
+        <input type="submit" value="Delete">
     </form>
-   
 </body>
 </html>

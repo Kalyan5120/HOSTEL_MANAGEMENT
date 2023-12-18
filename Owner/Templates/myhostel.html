@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>My Hostel Details</h1>
+    {% if hostel_details %}
+    <table border="2">
+        <tr>
+            <th>Hostel Id</th>
+            <th>Hostel name</th>
+            <th>address</th>
+            <th>phone</th>
+            <th>avalibality</th>
+            <th>room_list</th>
+            <th>Update</th>
+            <th>Delete</th>
+        </tr>
+        
+            {% for hostel in hostel_details %}
+            <tr>
+            <td>{{hostel.hostel_id}}</td>
+            <td>{{hostel.hostel_name}}</td>
+            <td>{{hostel.address}}</td>
+            <td>{{hostel.owner_phone_no}}</td>
+            <td>0</td>
+            <td><a href="{% url 'owner:hostel_list' pk=hostel.hostel_id %}"><button>Room_list</button></a></td>
+            <td><a href="{% url 'owner:hostel_update' pk=hostel.hostel_id %}"><button>Update</button></a></td>
+            <td><a href="{% url 'owner:hostel_delete' pk=hostel.hostel_id %}"><button>Delete</button></a></td>
+        </tr>
+            {% endfor %}
+    </table>
+    {% else %}
+    <h3>Data is not found</h3>
+    {% endif %}
+</body>
+</html>

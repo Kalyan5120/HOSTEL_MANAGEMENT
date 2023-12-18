@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from Owner.forms import Owner_login,Owner_registration_form,changepswrd_form,hostel_details_form,gallery_form,comments_form,room_details_form,bed_details_form,occupied_details_form
+from Owner.forms import *
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
@@ -116,11 +116,19 @@ def hostel_update_view(request,pk):
         print(request.user.id,pk)
         form=hostel_details_model.objects.filter(owner_id=request.user.id,hostel_id=pk).update(hostel_name=request.POST['name'],
                                                                                                type_of_hostel=request.POST['type_of_hostel'],
-                                                                                               owner_email=request.POST['email'],
-                                                                                               owner_phone_no=request.POST['phone_no'])
+                                                                                               owner_email=request.POST['email'],                                                                   owner_phone_no=request.POST['phone_no'])
         messages.success(request,"Data is updated")
-        return redirect('/Owner/list/')
+        return redirect('/Owner/myhostels/')
     return render(request=request,template_name='hostel_update.html',context={'form':form})
+
+@login_required(login_url='/Owner/owner_login')
+def hostel_delete_view(request,pk):
+    form=hostel_details_model.objects.get(hostel_id=pk)
+    if request.method=='POST':
+        form=hostel_details_model.objects.filter(owner_id=request.user.id,hostel_id=pk).delete()
+        messages.success(request,"Hostel is deleted")
+        return redirect('/Owner/myhostels/')
+    return render(request=request,template_name='hostel_delete_confirm.html',context={'hostel':form})
 
 
 
@@ -145,14 +153,39 @@ def comments_view(request):
 
 
 def room_details_view(request):
-    form=room_details_form()
+    form=room_details_form(hostel=request.user.id)
     if request.method=='POST':
-        form=room_details_form(request.POST)
+        form=room_details_form(request.POST,hostel=request.user.id)
         if form.is_valid():
             form.save()
             hostel_id=form.cleaned_data['hostel_id'].hostel_id
             return redirect(f'/Owner/bed_details/{hostel_id}/')
     return render(request=request,template_name='room_details.html',context={'form':form})
+
+def room_update_view(request,pk):
+    res=rooms_details_model.objects.get(room_id=pk)
+    form=room_update_form(hostel=request.user.id,instance=res)
+    if request.method=='POST':
+        res=rooms_details_model.objects.get(room_id=pk)
+        form=room_update_form(request.POST,hostel=request.user.id,instance=res)
+        if form.is_valid():
+            form.save()
+            hostel_id=form.cleaned_data['hostel_id'].hostel_id
+            return redirect(f'/Owner/bed_details/{hostel_id}/')
+    return render(request=request,template_name='room_details.html',context={'form':form})
+
+
+def room_delete_view(request,pk):
+    res=rooms_details_model.objects.get(room_id=pk)
+    if request.method=='POST':
+        temp=bed_details_model.objects.filter(room_no_id=pk).values_list('availability')
+        if (False,) not in temp:
+            res=rooms_details_model.objects.get(room_id=pk).delete()
+            messages.success(request,'Room Deleted')
+        else:
+            messages.warning(request,'All bads should be available')
+        return redirect(f'/Owner/myhostels')
+    return render(request=request,template_name='room_delete_confirm.html',context={'room':res})
 
 
 
@@ -161,6 +194,13 @@ def list_view(request):
     room_details=rooms_details_model.objects.all()
     bed_details=bed_details_model.objects.all()
     return render(request=request,template_name='list.html',context={'hostel_details':hostel_details,'room_details':room_details,'bed_details':bed_details})
+
+
+def room_list_view(request,pk):
+    hostel_details=hostel_details_model.objects.get(hostel_id=pk)
+    room_details=rooms_details_model.objects.filter(hostel_id_id=pk)
+    bed_details=bed_details_model.objects.all()
+    return render(request=request,template_name='room_list.html',context={'hostel_details':hostel_details,'room_details':room_details,'bed_details':bed_details})
 
 
 
@@ -172,21 +212,33 @@ def bed_details_view(request,pk):
         form=bed_details_form(request.POST,hostel=pk)
         if form.is_valid():
             form.save()
-            return redirect('/Owner/list')
-   
+            return redirect('/Owner/home/')
+
     return render(request=request,template_name='bed_details.html',context={'form':form,'hostel_id':pk})
 
 
 def update_bed_view(request,pk):
-    form=bed_details_form(instance=bed_details_model.objects.get(bed_id=pk))
+    form=bed_update_form(instance=bed_details_model.objects.get(bed_id=pk))
     if request.method=='POST':
-        form=bed_details_form(request.POST,instance=bed_details_model.objects.get(bed_id=pk))
+        form=bed_update_form(request.POST,instance=bed_details_model.objects.get(bed_id=pk))
         if form.is_valid():
-            form.save()            
-            return redirect('/Owner/bed_details')   
-        else:
-            return HttpResponse('data is not updated')  
+            form.save()
+            messages.success(request,'Bed details updated')
+            return redirect('/Owner/myhostels')
     return render(request=request,template_name='update_bed.html',context={'form':form})
+
+
+def delete_bed_view(request,pk):
+    res=bed_details_model.objects.get(bed_id=pk)
+    if request.method=='POST':
+        res=bed_details_model.objects.get(bed_id=pk)
+        if res.availability==True:
+            res=bed_details_model.objects.get(bed_id=pk).delete()
+            messages.success(request,'Bed details deleted')
+        else:
+            messages.warning(request,'Bed is not available')
+        return redirect('/Owner/myhostels')
+    return render(request=request,template_name='bed_delete_confirm.html',context={'Bed':res})
 
 
 
@@ -211,3 +263,9 @@ def occupied_update_view(request,pk):
 
 def owner_main_view(request):
     return render(request=request,template_name='owner_main.html')
+
+
+
+def my_hostel_details(request):
+    res=hostel_details_model.objects.filter(owner_id=request.user.id)
+    return render(request,template_name='myhostel.html',context={'hostel_details':res})
