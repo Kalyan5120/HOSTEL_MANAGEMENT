@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <table border="2">
+        <tr>
+            <th>image</th>
+            <th>hostel name</th>
+            <th>address</th>
+            <th>GST</th>
+            <th>license</th>
+            <th>type_of_hostel</th>
+            <th>hostel_owner_name</th>
+             <th>owner_phone_no</th>
+            <th>owner_email</th>
+            <th>location</th>
+            
+        </tr>
+        <tr>
+            <td>{{hostel.image}}</td>
+            <td>{{hostel.hostel_name}}</td>
+            <td>{{hostel.address}}</td>
+            <td>{{hostel.GST}}</td>
+            <td>{{hostel.license}}</td>
+            <td>{{hostel.type_of_hostel}}</td>
+            <td>{{hostel.hostel_owner_name}}</td>
+             <td>{{hostel.owner_phone_no}}</td>
+            <td>{{hostel.owner_email}}</td>
+            <td>{{hostel.location}}</td>
+        </tr>
+    </table>
+    <table>
+        {% for img in images%}
+        <tr>
+            <img src="{{img.images.url}}" alt="" height="100" width="100">
+        </tr>
+        {% endfor %}
+    </table>
+
+    {% if room_details %}
+        <table border="2" cellpadding="5" cellspacing="0">
+            <tr>
+                
+                <th>Room_Details</th>
+            </tr>
+                
+                <tr>
+                    
+                    <td>
+                        <table border="2" cellpadding="5" cellspacing="0">
+                            <tr>
+                                <th>Room_num</th>
+                                <th>Bed Details </th>
+                            </tr>
+                            {% for j in room_details %}
+                            <tr>
+                                <td>{{j.room_no}}
+                                </td>
+                                <td>
+                                <table border="2">
+                                    <tr>
+                                            <th>Bed_num</th>
+                                            <th>Cost</th>
+                                            <th>Availability</th>
+                                           
+    
+                                    </tr>
+                                    {% for k in bed_details %}
+                                   
+                                    {% if j == k.room_no %}
+                                    <tr> 
+                                        <td>{{k.bed_no}}</td>
+                                        <td>{{k.bed_cost}}</td>
+                                        
+                                        <td>{% if k.availability %} <a href="{% url 'customer:booking' hostel=hostel.hostel_id room=j.room_id bed=k.bed_id data1=hostel.hostel_name data2=j.room_no data3=k.bed_no %}"><button>Book</button></a> {% else %} <h4>booked</h4> {% endif %}</td>
+                    
+                                        
+                                    </tr>
+                                    {% endif %}
+                                    {% endfor %}
+                                    
+                                </table>
+                                </td>   
+                            </tr>
+                            {% endfor %}
+                           
+                       </table>
+                       
+                    </td>             
+                </tr>
+        </table>
+                {% else %}
+                <h3>Room details is not avaliable</h3>
+                 {% endif %}
+            
+
+</body>
+</html>

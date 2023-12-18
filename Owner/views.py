@@ -132,15 +132,31 @@ def hostel_delete_view(request,pk):
 
 
 
-def gallery_view(request):
+def gallery_view(request,pk):
     form=gallery_form()
     if request.method=='POST' and request.FILES:
         form=gallery_form(request.POST,request.FILES)
         if form.is_valid():
-            form.save()
-            return HttpResponse('/Owner/home')
+            data=form.save(commit=False)
+            data.hostel_id=pk
+            if data:
+                form.save()
+                messages.success(request,'Image is uploaded')
+            else:
+                messages.warning(request,'Image is not uploaded')
     return render(request=request,template_name='gallery.html',context={'form':form})
 
+
+def gallery_list_view(request,pk):
+    res=gallery_model.objects.filter(hostel_id=pk)
+    return render(request=request,template_name='gallery_images.html',context={'images':res})
+
+    
+
+def gallery_delete_view(request,pk):
+        gallery_model.objects.filter(gallery_id=pk).delete()
+        messages.success(request,'Image is deleted')
+        return HttpResponse('image deleted')
 
 def comments_view(request):
     form=comments_form()
@@ -171,7 +187,7 @@ def room_update_view(request,pk):
         if form.is_valid():
             form.save()
             hostel_id=form.cleaned_data['hostel_id'].hostel_id
-            return redirect(f'/Owner/bed_details/{hostel_id}/')
+            return redirect(f'/Owner/hostel_list/{hostel_id}/')
     return render(request=request,template_name='room_details.html',context={'form':form})
 
 
@@ -268,4 +284,5 @@ def owner_main_view(request):
 
 def my_hostel_details(request):
     res=hostel_details_model.objects.filter(owner_id=request.user.id)
-    return render(request,template_name='myhostel.html',context={'hostel_details':res})
+    temp=gallery_model.objects.all()
+    return render(request,template_name='myhostel.html',context={'hostel_details':res,'images':temp})

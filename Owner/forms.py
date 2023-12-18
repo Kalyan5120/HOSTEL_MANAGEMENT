@@ -142,7 +142,7 @@ class hostel_details_form(forms.ModelForm):
 class gallery_form(forms.ModelForm):
     class Meta:
         model=gallery_model
-        fields='__all__'
+        fields=['images']
 
 class comments_form(forms.ModelForm):
     class Meta:

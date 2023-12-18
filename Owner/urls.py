@@ -22,7 +22,9 @@ urlpatterns=[
     path(route='hostel_update/<int:pk>/',view=hostel_update_view,name='hostel_update'),
     path(route='hostel_delete/<int:pk>/',view=hostel_delete_view,name='hostel_delete'),
 
-    path(route='gallery/',view=gallery_view,name='gallery'),
+    path(route='gallery/<int:pk>/',view=gallery_view,name='gallery'),
+    path(route='gallery_images/<int:pk>/',view=gallery_list_view,name='gallery_images'),
+    path(route='delete_images/<int:pk>/',view=gallery_delete_view,name='delete_images'),
     path(route='comments/',view=comments_view,name='comments'),
 
     path(route='room_details/',view=room_details_view,name='room_details'),
