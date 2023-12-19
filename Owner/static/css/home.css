@@ -18,23 +18,6 @@
     height: 40px;
     border-radius: 4lvb ;
 }
-
-button{
-    height: 35px;
-    width: 200px;
-    font-size: larger;
-    margin-left: 5%;
-
-}
-button:hover{
-    background-color: green;
-}
-/* #card{
-    border: 2px solid black; 
-    height: 350px;
-    display: flex;
-    justify-content: space-around;
-}  */
 .sub_cards{
     border: 2px solid red;
     height: 300px;
