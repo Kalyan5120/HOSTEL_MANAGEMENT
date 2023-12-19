@@ -55,11 +55,7 @@ def logout_view(request):
     
 
 
-@login_required(login_url='/Customer/customer_login')
-def home_view(request):
-    res=hostel_details_model.objects.all()
 
-    return render(request=request,template_name='home.html',context={'hostels':res})
 
 
 @login_required(login_url='/Customer/customer_login')

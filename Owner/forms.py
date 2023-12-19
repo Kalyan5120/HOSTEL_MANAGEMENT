@@ -5,6 +5,7 @@ from django.contrib.auth.hashers import make_password
 from Owner.models import Owner_registration_model,hostel_details_model,occupied_details_model,gallery_model,comments_model,rooms_details_model,bed_details_model
 from Owner.validators import clean_enter_new_password
 import re
+from Customer.models import customer_book
 
 # owner registration_admin start
 class Owner_registration_form(forms.ModelForm):
@@ -223,3 +224,6 @@ class occupied_details_form(forms.ModelForm):
         aadhar = self.cleaned_data['aadhar']
         if len(str(aadhar))!=12:
             raise forms.ValidationError('aadhar no must contain 12 numbers')
+        
+
+

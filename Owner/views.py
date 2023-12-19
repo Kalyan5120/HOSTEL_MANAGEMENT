@@ -219,6 +219,62 @@ def room_list_view(request,pk):
     bed_details=bed_details_model.objects.all()
     return render(request=request,template_name='room_list.html',context={'hostel_details':hostel_details,'room_details':room_details,'bed_details':bed_details})
 
+def availability_view(request):
+    res= hostel_details_model.objects.filter(owner_id=request.user.id)
+    #total no of beds
+    count=[(i.hostel_id,sum([j.num_of_beds for j in rooms_details_model.objects.filter(hostel_id=i)])) for i in res]
+    #total no of created:
+    
+    temp=[(i.hostel_id,sum([bed_details_model.objects.filter(room_no=j).count() for j in rooms_details_model.objects.filter(hostel_id=i)])) for i in res]
+
+    print('total beds','created', "not created",sep='|')
+    l=[(k[0][0],k[0][1],k[1][1],(k[0][1])-(k[1][1])) for k in zip(count,temp) if k[0][0]==k[1][0]]
+    # print(l)
+        
+    # total booked bed:
+
+    # bed=bed_details_model.objects.filter(bed_id=)
+    # for k in res:
+    #     booking=0
+    #     booked=0
+    #     for j in rooms_details_model.objects.filter(hostel_id=k):
+    #         for t in bed_details_model.objects.filter(room_no=j):
+    #             print(t,t.availability)
+    #             if t.availability:
+    #                 booking+=1
+    #             else:
+    #                 booked+=1
+    #         print(booking,booked)
+    #         booked,booking=0,0
+    #         print('-------------')
+
+    res= hostel_details_model.objects.filter(owner_id=request.user.id)
+    booking=0
+    booked=0
+    l=[]
+    for k in res:
+        for j in rooms_details_model.objects.filter(hostel_id=k):
+            for t in bed_details_model.objects.filter(room_no=j):
+                if t.availability:
+                    booking+=1
+                else:
+                    booked+=1
+        l+=(k,booking,booked)
+        booking,booked=0,0
+    print(l)
+
+
+
+
+    
+
+
+
+    
+
+
+
+
 
 # ======== room_details CRUD operations =============
 
@@ -293,4 +349,55 @@ def owner_main_view(request):
 def my_hostel_details(request):
     res=hostel_details_model.objects.filter(owner_id=request.user.id)
     temp=gallery_model.objects.all()
-    return render(request,template_name='myhostel.html',context={'hostel_details':res,'images':temp})
+
+    
+    hostel= hostel_details_model.objects.filter(owner_id=request.user.id)
+    #total no of beds
+    count=[(i.hostel_id,sum([j.num_of_beds for j in rooms_details_model.objects.filter(hostel_id=i)])) for i in hostel]
+    #total no of created:
+    
+    count1=[(i.hostel_id,sum([bed_details_model.objects.filter(room_no=j).count() for j in rooms_details_model.objects.filter(hostel_id=i)])) for i in hostel]
+
+    print('total beds','created', "not created",sep='|')
+    l=[(k[0][0],k[0][1],k[1][1],(k[0][1])-(k[1][1])) for k in zip(count,count1) if k[0][0]==k[1][0]]
+    return render(request,template_name='myhostel.html',context={'hostel_details':res,'images':temp,'available':l})
+
+
+
+
+
+
+def owner_book_view(request,hostel,room,bed,data1,data2,data3):
+    if request.method=="POST":
+        subject='Your requesting booking bed'
+        msg=f'''hello {request.POST['username']},
+                hostel:{data1}
+                room:{data2}
+                bedno:{data3}
+                please fill the form for further details.
+                http://127.0.0.1:8000/Customer/booking/{hostel}/{room}/{bed}/{data1}/{data2}/{data3}/
+                thank you.
+                '''
+        send_mail(subject=subject,message=msg,from_email=settings.EMAIL_HOST_USER,recipient_list=[request.POST['email']])
+        messages.success(request,"sent the request mail")
+        return redirect('/Customer/home/')
+    return render(request,template_name='booking_request.html')
+    
+
+def approved_room_book_view(request,room,bed,pk):
+    res=bed_details_model.objects.get(bed_id=bed,room_no=room)
+    if res:
+        bed_details_model.objects.filter(bed_id=bed,room_no=room).update(availability=False)
+        customer_book.objects.filter(id=pk).update(approved=True)
+        subject='Your bad is approved successfully'
+        res=customer_book.objects.get(id=pk)
+        msg=f'''hello {res.first_name},
+                you can join with in four days.
+                thank you.
+                '''
+        send_mail(subject=subject,message=msg,from_email=settings.EMAIL_HOST_USER,recipient_list=[res.c_email,])
+        messages.success(request,"successfully approval")
+    else:
+        messages.success(request,"approval failed")
+    return redirect('/Customer/home/')
+    

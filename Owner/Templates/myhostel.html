@@ -27,7 +27,17 @@
             <td>{{hostel.hostel_name}}</td>
             <td>{{hostel.address}}</td>
             <td>{{hostel.owner_phone_no}}</td>
-            <td>0</td>
+            <td><table border="2">
+                <tr><th>Total Bed</th>
+                    <th>Created</th>
+                    <th>Not created</th>
+                </tr>
+                <tr>
+                {% for m in available %} {% if m.0 == hostel.hostel_id %}
+                    <td>{{m.1}}</td>
+                    <td>{{m.2}}</td>
+                    <td>{{m.3}}</td>
+                    {% endif %}{% endfor%} </tr> </table></td>
             
             <td><a href="{% url 'owner:hostel_list' pk=hostel.hostel_id %}"><button>Room_list</button></a></td>
             <td>

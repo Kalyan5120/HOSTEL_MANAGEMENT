@@ -105,33 +105,24 @@
 
 <!-- cards start -->
 <div id="card">
+  {% for i in hostels %}
   <div class="sub_cards">
-    <img src="{% static 'images/image1.jpg' %}" alt="" class="image">
-<ul>
-    <li>hostel_name</li>
-    <li>area</li>
-    <li><a href="">more_details</a></li>
-</ul>
-</div>
-<div class="sub_cards">
-<img  src="{% static 'images/image1.jpg' %}" alt="" class="image">
-<div>
-    <ul>
-        <li>hostel_name</li>
-        <li>area</li>
-        <li><a href="">more_details</a></li>
-    </ul>
-</div>
-</div>
-<div class="sub_cards">
-<img src="{% static 'images/image1.jpg' %}" alt="" class="image">
-<ul>
-    <li>hostel_name</li>
-    <li>area</li>
-    <li><a href="">more_details</a></li>
-</ul>
-</div>
-</div>
+      <a href="{% url 'customer:hostel_detail' pk=i.hostel_id %}"><img src="{{i.image.url}}" alt="" class="image" height="75" width="75"></a>
+      <ul>
+          <li>{{i.hostel_name}}</li>
+          <li>{{i.location}}</li>
+          <li>
+              {% for j in available %}
+                  {% if j.0 == i %}
+                  available:{{j.1}} <br>  unavailable:{{j.2}}
+                  {% endif %}
+              {% endfor %}
+
+
+          </li>
+      </ul>
+  </div>
+  {% endfor %}
 <!-- cards end -->
 </body>
 </html>

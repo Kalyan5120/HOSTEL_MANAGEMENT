@@ -26,6 +26,7 @@
                         {% for j in room_details %}
                         <tr>
                             <td>{{j.room_no}} <br>
+                                total_beds: {{j.num_of_beds}}<br>
                                 <a href="{% url 'owner:room_update' pk=j.room_id %}"><button>Update</button></a><br>
                                 <a href="{% url 'owner:room_delete' pk=j.room_id %}"><button>delete</button></a><br>
 
@@ -45,7 +46,7 @@
                                 <tr>
                                     <td>{{k.bed_no}}</td>
                                     <td>{{k.bed_cost}}</td>
-                                    <td>{{k.availability}}</td>
+                                    <td>{% if k.availability %} <a href="{% url 'owner:booking' hostel=hostel_details.hostel_id room=j.room_id bed=k.bed_id data1=hostel_details.hostel_name data2=j.room_no data3=k.bed_no %}"><button>Book</button></a> {% else %} <h4>booked</h4> {% endif %}</td>
                                     <td><a href="{% url 'owner:bed_update' pk=k.bed_id%}"><button>Update</button></a></td>
                                     <td><a href="{% url 'owner:bed_delete' pk=k.bed_id%}"><button>Delete</button></a></td>
                                     
