@@ -1,14 +1,13 @@
 from django.shortcuts import render,redirect
-from Customer.forms import cust_form,customer_login,changepswrd_form,book_room_form
-from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.decorators import login_required
+from Customer.forms import book_room_form
+
 from django.http import HttpResponse
-import random
+
 from django.conf import settings
 from django.core.mail import send_mail
-from Customer.models import customer_register,customer_book
+from Customer.models import customer_book
 from django.contrib import messages
-from django.contrib.auth.hashers import make_password
+
 from Owner.models import hostel_details_model,rooms_details_model,bed_details_model,gallery_model
 
 
