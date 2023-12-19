@@ -38,7 +38,15 @@
         <ul>
             <li>{{i.hostel_name}}</li>
             <li>{{i.location}}</li>
-            <li><a href="{%}">more_details</a></li>
+            <li>
+                {% for j in available %}
+                    {% if j.0 == i %}
+                    available:{{j.1}} <br>  unavailable:{{j.2}}
+                    {% endif %}
+                {% endfor %}
+
+
+            </li>
         </ul>
     </div>
     {% endfor %}
