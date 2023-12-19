@@ -19,6 +19,9 @@
 
 </head>
 <body>
+    {% for i in messages %}
+    <h3>{{i}}</h3>
+    {% endfor %}
     <div>
         {% include 'partials/_header.html' %}
     </div>
@@ -26,9 +29,7 @@
         <div id="login">
             <h1>Customer login</h1>
             <div id="sub_log">
-            {% for i in messages %}
-            <h3>{{i}}</h3>
-            {% endfor %}
+           
         <form action="" method="post">
             {% csrf_token %}
             <table>
