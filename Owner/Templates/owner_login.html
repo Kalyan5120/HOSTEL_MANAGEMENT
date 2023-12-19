@@ -4,21 +4,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>owner_login</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <link rel="shortcut icon" href="{% static 'images/Imagelogo2.jpg' %}">
+    <style>
+        body{
+
+    background-image: url('{% static "images/login..jpg" %}');
+    background-repeat: no-repeat;
+    background-size:100% 110vh;
+
+}
+    </style>
     
 </head>
 <body>
-    <div id="login">
-        <h1>Owner_login Page</h1>
-    <form action="" method="post">
-        {% csrf_token %}
-        <table>
-            {{form}}
-        </table>
-        <input type="submit" value="login"><br>
-        <a href="{% url 'owner:forgetpswrd' %}">Forget password?</a>
-    </form>
-        <h1>New user?</h1>
-        <a href="{% url 'owner:owner_register' %}"><button>Register</button></a>   
+    <div>
+        {% include 'partials/_header.html' %}
+    </div>
+    <div>
+        <div id="login">
+            <h1>Customer login</h1>
+            <div id="sub_log">
+           
+        <form action="" method="post">
+            {% csrf_token %}
+            <table>
+                {{form}}
+            </table>
+            <input class="button" type="submit" value="login"><br>
+            <a href="{% url 'owner:forgetpswrd' %}">Forget password?</a>
+        </form>
+        
+        <h3>New user?</h3>
+        <a href="{% url 'owner:owner_register' %}"><button class="button">Register</button></a>
+            </div>
+        </div>
     </div>
 </body>
 </html>

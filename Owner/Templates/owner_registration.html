@@ -4,17 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>owner_Register</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/reg.css' %}">
+    <link rel="shortcut icon" href="{% static 'images/Imagelogo2.jpg' %}">
+    <style>
+     body{
+    background-image: url('{% static "images/reg-home.jpg" %}');
+    background-repeat: no-repeat;
+    background-size:100% 110vh;
+
+}
+    </style>
 </head>
 <body>
-    <h1>Owner_register page</h1>
-    <form action="" method="post">
-        {% csrf_token %}
-        <table>
-            {{form}}
-        </table>
-        <input type="submit" value="register">
-        <h1>Already an account?</h1>
-    </form>
-    <a href="{% url 'owner:owner_login' %}"><button>Login</button></a>
+    <div>
+        {% include 'partials/_header.html' %}
+    </div>
+<!-- <marquee id="marquee" direction="right">ESAY_STAY</marquee>  -->
+<div class="main">
+    <h1>Owner registration</h1>
+    <div class="main1">
+      
+        <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <table>
+                {{form}}
+            </table>
+            <br>
+            <input class="btn" type="submit" value="register">
+        </form>
+        <br>
+            <h3>Already a User?</h3>
+            <br>
+            <a href="{% url  'owner:owner_login' %}"><button class="btn">Login</button></a>
+    </div>
+</div>
 </body>
 </html>
