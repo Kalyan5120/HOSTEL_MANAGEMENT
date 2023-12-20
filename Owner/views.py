@@ -208,12 +208,6 @@ def room_delete_view(request,pk):
 
 
 
-def list_view(request):
-    hostel_details=hostel_details_model.objects.all()
-    room_details=rooms_details_model.objects.all()
-    bed_details=bed_details_model.objects.all()
-    return render(request=request,template_name='list.html',context={'hostel_details':hostel_details,'room_details':room_details,'bed_details':bed_details})
-
 @login_required(login_url='/Owner/owner_login')
 def room_list_view(request,pk):
     hostel_details=hostel_details_model.objects.get(hostel_id=pk)
