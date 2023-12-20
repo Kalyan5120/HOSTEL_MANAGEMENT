@@ -3,25 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ESAY_STAY</title>
+    <title>EASY_STAY</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/change_pas.css' %}">
     <link rel="shortcut icon" href="{% static 'images/Imagelogo2.jpg' %}">
     <style>
         body{
-            background-image: url('{% static "images/resetpassword1.jpg" %}');
+            background-image: url('{% static "images/resetpassword2.jpg" %}');
             background-repeat: no-repeat;
-            background-size:80% 110vh;
+            background-size:100% 110vh;
+        }
+        h1{
+            color: whitesmoke;
+        }
+        .ta{
+            color: white;
         }
     </style>
 </head>
 <body>
-    <h1>Change password</h1>
+    <h1>Reset Password</h1>
     <form action="" method="post">
         {% csrf_token %}
+        <div class="ta">
         <table>
             {{form}}
         </table>
+    </div>
         <input type="submit" value="Confirm">
     </form>
 </body>
