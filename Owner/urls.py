@@ -13,7 +13,7 @@ urlpatterns=[
     path(route='home/',view=owner_home_view,name='home'),
 
     path(route='forgetpswrd/',view=forgetpassword_view,name='forgetpswrd'),
-    path(route='owner_otp/<int:pk>/',view=otp_confirm_view,name='owner_otp'),
+    path(route='owner_otp/<int:pk>/<email>/',view=otp_confirm_view,name='owner_otp'),
     path(route='changepswrd/<int:pk>/',view=changepswrd_view,name='changepswrd'),
 
     path(route='hostel_details/',view=hostel_details_view,name='hostel_details'),

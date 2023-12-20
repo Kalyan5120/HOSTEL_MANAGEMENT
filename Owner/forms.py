@@ -66,6 +66,7 @@ class Owner_registration_form(forms.ModelForm):
         user=super().save(commit=False)
         if self.cleaned_data['password']==self.cleaned_data['repassword']:
             user.password=make_password(self.cleaned_data['password'])
+            user.is_staff=True
             if commit:
                 user.save()
             return user

@@ -7,7 +7,7 @@ import random
 from django.conf import settings
 from django.core.mail import send_mail
 from django.contrib import messages
-from Owner.models import Owner_registration_model,hostel_details_model,occupied_details_model,gallery_model,comments_model,rooms_details_model,bed_details_model
+from Owner.models import *
 import re
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import User
@@ -49,18 +49,16 @@ def owner_home_view(request):
 
 
 #forget password 
-
-otp_confirm=None
-
-
 def forgetpassword_view(request):
     res=User.objects.all().values_list('email')    
-    global otp_confirm
     if request.method=='POST':
         print(request.POST)
         otp=random.randint(0000,9999)
-        otp_confirm=otp
         email=request.POST['email']
+        otp_model.objects.filter(username=email).delete()
+        otp_model.objects.create(username=email,otp_no=otp)
+        print(email,otp)
+        print(res)
         if (email,) in res:
             subject='confirm the OTP'
             msg=f'''hello ,
@@ -68,15 +66,17 @@ def forgetpassword_view(request):
                 thank you.'''
             send_mail(subject=subject,message=msg,from_email=settings.EMAIL_HOST_USER,recipient_list=[email,])
             email_id=User.objects.get(email=email)
-            return redirect(f'/Owner/owner_otp/{email_id.id}/')
+            return redirect(f'/Owner/owner_otp/{email_id.id}/{email}')
         else:
             messages.error(request,'email is incorrect')
     return render(request=request,template_name='forget_password.html')
 
 
-def otp_confirm_view(request,pk):
+def otp_confirm_view(request,pk,email):
     if request.method=='POST':
+        otp_confirm=otp_model.objects.get(username=email).otp_no
         if str(otp_confirm)==str(request.POST['otp_confirm']):
+            otp_confirm=otp_model.objects.get(username=email).delete()
             return redirect(f'/Owner/changepswrd/{pk}/')
         else:
             return redirect('/Owner/forgetpswrd')
