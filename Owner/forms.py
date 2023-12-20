@@ -13,6 +13,13 @@ class Owner_registration_form(forms.ModelForm):
         model=Owner_registration_model
         fields=['username','first_name','last_name','email','contactno','gender','password','repassword'] 
 
+    def __init__(self,*args,**kwargs):
+        super(Owner_registration_form,self).__init__(*args,**kwargs)
+        for field in self.fields.values():
+            field.widget.attrs['class']='form-control'
+            field.widget.attrs['place']="Enter "+str(field.label)
+
+
     def clean_username(self):
         username = self.cleaned_data['username']
         if not(username[0].isupper()):

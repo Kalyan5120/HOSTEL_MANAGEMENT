@@ -16,7 +16,6 @@
       
       }
       body {
-        background-image: url('{% static "images/easy1.jpg" %}');
         background-repeat: no-repeat;
         background-size: 100% 110vh;
         /* background: fixed; */
@@ -88,91 +87,51 @@
 </style>
 </head>
 <body>
-  <div>
-    {% include 'partials/_header.html' %}
-  </div>
-  <nav id="na"></nav>
-  <div>
-      <div id="wel">
-        <h1>Welcome's you</h1>
-      </div>
-        <div id="to">
-          <ul>
-            <li>'Join us if you plan to build a hostel business.' </li>
-            <br>
-            <a href="{% url 'owner:owner_register' %}"><button id="btn">Join Us</button></a>
-            <br>
-            <br><br>
-            <br>
-            <li>'Come along if you want to find the best hostels.'</li>
-          </ul>
-        </div>  
-  </div>
-  <!-- search starts -->
-  <div>
-    <input type="search" name="search" id="search" placeholder="Search for hostels">
-  </div>
-<br><br>
-<!-- search end -->
- <!-- carousel-start -->
-      <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            
-            
-            <!-- <img src="..." class="d-block w-100" alt="..."> -->
-          </div>
-          <div class="carousel-item">
-            
-            
-            <!-- <img src="..." class="d-block w-100" alt="..."> -->
-          </div>
-          <div class="carousel-item">
-            
-            
-            <!-- <img src="..." class="d-block w-100" alt="..."> -->
-          </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-          </button>
-          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-          </button>
-      </div>
-    <!-- carousel-ends -->
+  <header>
+  {% include 'partials/_header.html' %}
+  </header>
 
-
-<!-- cards start -->
+  {% block body-content %}
+<main>
 <div id="card">
   {% for i in hostels %}
-  <div class="sub_cards">
-      <a href="{% url 'customer:hostel_detail' pk=i.hostel_id %}"><img src="{{i.image.url}}" alt="" class="image" height="75" width="75"></a>
-      <ul>
-          <li>{{i.hostel_name}}</li>
-          <li>{{i.location}}</li>
-          <li>
+  <div class="album py-5 bg-body-tertiary">
+    <div class="container">
+
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        <div class="col">
+          <div class="card shadow-sm">
+            <img src="{{i.image.url}}" alt="" class="bd-placeholder-img card-img-top" height="100%" width="100%"/>
+            <div class="card-body">
+              <p class="card-text">Hostel Name: {{i.hostel_name|title}}</p>
+              <p class="card-text">Location :  {{i.location|title}}</p>
               {% for j in available %}
-                  {% if j.0 == i %}
-                  available:{{j.1}} <br>  unavailable:{{j.2}}
-                  {% endif %}
+              {% if j.0 == i %}
+              <p class="card-text">Bed Available: {{j.1}} <br> Bed Unavailable: {{j.2}}
+              {% endif %}
               {% endfor %}
-
-
-          </li>
-      </ul>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <a href="{% url 'customer:hostel_detail' pk=i.hostel_id %}"><button type="button" class="btn btn-sm btn-outline-secondary">Book</button></a>
+                </div>
+                <small class="text-body-secondary">9 mins</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
   {% endfor %}
 </div>
-<!-- cards end -->
+</main>
+{% endblock body-content %}
 
-<!-- footer starts -->
-
-
-
+<footer>
+  {% include 'partials/_footer.html' %}
+</footer>
 <!-- footer ends -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+
 </body>
 </html>

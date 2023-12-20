@@ -24,7 +24,7 @@ app_name='easy_stay'
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path(route='',view=easy_stay_view,name='easy_stay'),
+    path(route='',view=easy_stay_view,name='easy'),
     path(route='Customer/',view=include('Customer.urls'),name='Customer'),
     path(route='Owner/',view=include('Owner.urls'),name='Owner')
 ]
