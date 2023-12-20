@@ -38,7 +38,7 @@ urlpatterns=[
     path(route='occupied_details/',view=occupied_details_view,name='occupied_details'),
     path(route='occ_update/<int:pk>/',view=occupied_update_view,name='occ_update'),
 
-    path(route='list/',view=list_view,name='list'),
+
     path(route='availability/',view=availability_view,name='availability'),
     path(route='booking/<hostel>/<room>/<bed>/<data1>/<data2>/<data3>/',view=owner_book_view,name='booking'),
 
