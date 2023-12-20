@@ -102,10 +102,29 @@ line-height: 35px;
 a{
     text-decoration: none;
 }
- /* #na{
-    border: 2px solid black;
-    height: 50px;
-}  */
+.topnav {
+  background-color: rgba(203, 177, 177, 0.356);
+  overflow: hidden;
+  /* margin-left: 4%; */
+}
+.topnav a {
+  float: left;
+  color: black;
+  padding:7px;
+  margin:10px;
+  /* margin-left: 4%; */
+  font-size:x-large;
+  /* border: 2px solid black; */
+}
+.topnav a:hover {
+  text-decoration:underline;
+color: crimson;
+}
+.nav{
+    margin-left: 10%; 
+
+}
+
     </style> 
 </head>
 <body>
@@ -113,7 +132,6 @@ a{
     <div id="main">
         <div ><img id="img1" src="{% static 'images/imagelogo1.jpg.' %}" alt=""></div>
         <div id="name"><h1 id="easy">EASY STAY<sub id="subname">~"WILL SAVE YOUR TIME AND ENERGY"</sub></h1></div>
-        <!-- <nav id="na"></nav> -->
         <div><img id="menu" src="{% static 'images/bx-menu.svg' %}" alt=""></div>
         <div id="ggg" >
             <ol id="ull">
@@ -126,6 +144,14 @@ a{
         </div>
     </div>
    </div>
+    <div class="topnav">
+        <div class="nav">
+        <a class="active" href="">Home</a>
+        <a class="active" href="">About</a>
+        <a class="active" href="">Contact</a>
+        <a class="active" href="">Help</a>
+      </div>
+    </div>
 <!-- </div>
     <marquee id="marquee" direction="right">EASY_STAY</marquee>
  <div> -->

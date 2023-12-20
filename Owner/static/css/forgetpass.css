@@ -6,11 +6,11 @@
 }
 #email{
    padding-left: 47.8%;
-   margin-top: 33.5%;
+   margin-top: 26%;
    
 }
 .emailid{
-    padding: 11px 7%;
+    padding: 14.7px 7%;
     border-radius: 10px;
     background-color: rgb(234, 234, 130);
 }
@@ -21,9 +21,9 @@
 }
 .otp{
     font-size: larger;
-    margin-top: 1.8%;
+    margin-top: 2.2%;
     margin-left: 6.5%;
-    padding: 8px 12.5%;
+    padding: 10px 12.5%;
     border-radius: 10px;
     background-color: rgb(234, 234, 130);
 }
@@ -32,7 +32,7 @@
 }
 .i{
     padding-left: 55%;
-   margin-top: 28%; 
+   margin-top: 20%; 
    font-weight: bolder;
    font-size: larger;
 }
