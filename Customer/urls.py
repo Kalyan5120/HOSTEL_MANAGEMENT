@@ -1,5 +1,5 @@
 from django.urls import path
-from Customer.views import *
+from Customer.views import hostel_detail_view,room_book_view,approved_room_book_view
 app_name='customer'
 
 urlpatterns=[
