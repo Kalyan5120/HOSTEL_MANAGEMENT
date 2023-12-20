@@ -10,6 +10,7 @@ from django.contrib import messages
 from Owner.models import Owner_registration_model,hostel_details_model,occupied_details_model,gallery_model,comments_model,rooms_details_model,bed_details_model
 import re
 from django.contrib.auth.hashers import make_password
+from django.contrib.auth.models import User
 
 
 
@@ -53,9 +54,10 @@ otp_confirm=None
 
 
 def forgetpassword_view(request):
-    res=Owner_registration_model.objects.all().values_list('email')    
+    res=User.objects.all().values_list('email')    
     global otp_confirm
     if request.method=='POST':
+        print(request.POST)
         otp=random.randint(0000,9999)
         otp_confirm=otp
         email=request.POST['email']
@@ -65,7 +67,7 @@ def forgetpassword_view(request):
                 please confirm the otp:{otp}
                 thank you.'''
             send_mail(subject=subject,message=msg,from_email=settings.EMAIL_HOST_USER,recipient_list=[email,])
-            email_id=Owner_registration_model.objects.get(email=email)
+            email_id=User.objects.get(email=email)
             return redirect(f'/Owner/owner_otp/{email_id.id}/')
         else:
             messages.error(request,'email is incorrect')
