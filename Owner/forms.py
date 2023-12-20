@@ -130,7 +130,7 @@ class changepswrd_form(forms.Form):
 class hostel_details_form(forms.ModelForm):
     class Meta:
         model=hostel_details_model
-        exclude=['owner_id','hostel_owner_name']
+        exclude=['owner_id','hostel_owner_name','owner_email','owner_phone_no']
     
     def clean_owner_phone_cdno(self):
         phoneno = self.cleaned_data['owner_phone_no']
