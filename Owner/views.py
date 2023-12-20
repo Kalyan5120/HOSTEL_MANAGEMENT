@@ -362,7 +362,6 @@ def my_hostel_details(request):
 
 
 
-
 def owner_book_view(request,hostel,room,bed,data1,data2,data3):
     if request.method=="POST":
         subject='Your requesting booking bed'
