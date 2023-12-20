@@ -96,7 +96,7 @@ def changepswrd_view(request,pk):
 
 
 #hostel_details CRUD operations
-
+@login_required(login_url='/Owner/owner_login')
 def hostel_details_view(request):
     form=hostel_details_form()
     if request.method=='POST':
@@ -170,7 +170,7 @@ def comments_view(request):
     return render(request=request,template_name='comments.html',context={'form':form})
 
  # ============== room_details CRUD operations ===============
-
+@login_required(login_url='/Owner/owner_login')
 def room_details_view(request):
     form=room_details_form(hostel=request.user.id)
     if request.method=='POST':
@@ -341,7 +341,7 @@ def owner_main_view(request):
     return render(request=request,template_name='owner_main.html')
 
 
-
+@login_required(login_url='/Owner/owner_login')
 def my_hostel_details(request):
     res=hostel_details_model.objects.filter(owner_id=request.user.id)
     temp=gallery_model.objects.all()
@@ -396,4 +396,8 @@ def approved_room_book_view(request,room,bed,pk):
     else:
         messages.success(request,"approval failed")
     return redirect('/Customer/home/')
+
+
+def index(request):
+    return render(request,template_name='index.html')
     

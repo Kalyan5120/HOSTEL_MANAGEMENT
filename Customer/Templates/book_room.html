@@ -1,17 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=\, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Room Booking</h1>
-    <form action="" method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{form}}
-        <input type="submit" value="Book"> 
-    </form>
-    
-</body>
-</html>
+{% extends 'easystay.html' %}
+
+
+{% block body-content %}
+      <hr class="my-4">
+  <main>
+    <div class="container">
+    <div class="row">
+      <div class="col-md-7 col-lg-8">
+        <h4 class="mb-3">Room Booking form</h4>
+        <form class="needs-validation" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+          <div class="row g-5">
+            <div class="">
+            <table >
+             {{form}}
+            </table>
+            </div>
+         
+          <button class="w-100 btn btn-primary btn-lg" type="submit">Continue to Booking</button>
+        </form>
+      </div>
+    </div>
+</div>
+</main>
+<hr class="my-4">
+{% endblock body-content %}

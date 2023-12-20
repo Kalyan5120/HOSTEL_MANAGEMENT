@@ -1,68 +1,73 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+{% extends 'easystay.html' %}
+{% block body-content %}
+<main>
+    <hr class="featurette-divider">
 
-    <table border="2">
-        <tr>
-            <th>image</th>
-            <th>hostel name</th>
-            <th>address</th>
-            <th>GST</th>
-            <th>license</th>
-            <th>type_of_hostel</th>
-            <th>hostel_owner_name</th>
-             <th>owner_phone_no</th>
-            <th>owner_email</th>
-            <th>location</th>
-            
-        </tr>
-        <tr>
-            <td>{{hostel.image}}</td>
-            <td>{{hostel.hostel_name}}</td>
-            <td>{{hostel.address}}</td>
-            <td>{{hostel.GST}}</td>
-            <td>{{hostel.license}}</td>
-            <td>{{hostel.type_of_hostel}}</td>
-            <td>{{hostel.hostel_owner_name}}</td>
-             <td>{{hostel.owner_phone_no}}</td>
-            <td>{{hostel.owner_email}}</td>
-            <td>{{hostel.location}}</td>
-        </tr>
-    </table>
-    <table>
-        {% for img in images%}
-        <tr>
-            <img src="{{img.images.url}}" alt="" height="100" width="100">
-        </tr>
-        {% endfor %}
-    </table>
+  <!-- Marketing messaging and featurettes
+  ================================================== -->
+  <!-- Wrap the rest of the page in another container to center all the content. -->
 
-    {% if room_details %}
-        <table border="2" cellpadding="5" cellspacing="0">
+  <div class="container marketing">
+    <h2 class="featurette-heading fw-normal lh-1">Hostel Gallery</h2>
+
+    <!-- Three columns of text below the carousel -->
+    <div class="row">
+            {% for img in images%}
+                <div class="col-lg-4">
+                    <img class="bd-placeholder-img" width="100%" height="200" src="{{img.images.url}}">
+                  </div><!-- /.col-lg-4 --> 
+            {% endfor %}
+    
+    </div><!-- /.row -->
+
+
+    <!-- START THE FEATURETTES -->
+
+    <hr class="featurette-divider">
+    <h2 class="featurette-heading fw-normal lh-1">Hostel Details</h2>
+    <div class="row featurette">
+      <div class="col-md-7">
+        <table>        
+            <tr><p class="lead">Hostel Name:    <strong>{{hostel.hostel_name|title}}</strong></p></tr>
+            <tr><p class="lead">Hostel address: <strong>{{hostel.address|title}}</strong></p></tr>
+            <tr><p class="lead">Hostel GST:     <strong>{{hostel.GST|title}}</strong></p></tr>
+            <tr><p class="lead">Hostel license: <strong>{{hostel.license|title}}</strong></p></tr>
+            <tr><p class="lead">Hostel type_of_hostel:    <strong>{{hostel.type_of_hostel|title}}</strong></p></tr>
+            <tr><p class="lead">Hostel hostel_owner_name: <strong>{{hostel.hostel_owner_name|title}}</strong></p></tr>
+            <tr><p class="lead">Hostel owner_phone_no:    <strong>{{hostel.owner_phone_no|title}}</strong></p></tr>
+            <tr><p class="lead">Hostel hostel_owner_name: <strong>{{hostel.owner_email|title}}</strong></p></tr>
+            <tr><p class="lead">Hostel owner_email:       <strong>{{hostel.location|title}}</strong></p></tr>
+    </table>
+      </div>
+      <div class="col-md-5">
+        <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="100%" height="100%" src="{{hostel.image.url}}">
+      </div>
+    </div>
+
+    <hr class="featurette-divider">
+    <div>
+        {% if room_details %}
+        <table class="table">
+            <thead class="thead-dark">
             <tr>
-                
-                <th>Room_Details</th>
+                <th  scope="col" scope="col" >Room_Details</th>
             </tr>
-                
+            </thead>
+            <tbody>
                 <tr>
                     
                     <td>
-                        <table border="2" cellpadding="5" cellspacing="0">
+                        <table class="table" border="2" cellpadding="5" cellspacing="0">
                             <tr>
-                                <th>Room_num</th>
-                                <th>Bed Details </th>
+                                <th  scope="col">Room_num</th>
+                                <th  scope="col">Bed Details </th>
                             </tr>
                             {% for j in room_details %}
                             <tr>
                                 <td>{{j.room_no}}
                                 </td>
                                 <td>
-                                <table border="2">
+                                <table class="table" border="2">
                                     <tr>
                                             <th>Bed_num</th>
                                             <th>Cost</th>
@@ -77,7 +82,7 @@
                                         <td>{{k.bed_no}}</td>
                                         <td>{{k.bed_cost}}</td>
                                         
-                                        <td>{% if k.availability %} <a href="{% url 'customer:booking' hostel=hostel.hostel_id room=j.room_id bed=k.bed_id data1=hostel.hostel_name data2=j.room_no data3=k.bed_no %}"><button>Book</button></a> {% else %} <h4>booked</h4> {% endif %}</td>
+                                        <td>{% if k.availability %} <a href="{% url 'customer:booking' hostel=hostel.hostel_id room=j.room_id bed=k.bed_id data1=hostel.hostel_name data2=j.room_no data3=k.bed_no %}"><button class="btn btn-outline-success">Book</button></a> {% else %} <h4>booked</h4> {% endif %}</td>
                     
                                         
                                     </tr>
@@ -93,11 +98,14 @@
                        
                     </td>             
                 </tr>
+            </tbody>
         </table>
                 {% else %}
                 <h3>Room details is not avaliable</h3>
                  {% endif %}
             
+    </div>
+  </div>
 
-</body>
-</html>
+</main>
+{% endblock body-content %}
