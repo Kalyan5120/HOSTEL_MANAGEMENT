@@ -4,16 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hostel_details</title>
+    <style>
+        table{
+            border: 2px solid black;
+            justify-content: center;
+        }
+    </style>
 </head>
-<body>
+<body >
+    <div>
+        {% include 'partials/_header.html' %}
+    </div>
     <h1>Hostel_Details</h1>
-    <form action="" method="post">
+    <form action="" method="post"  >
         {% csrf_token %}
         <table>
             {{form}}
         </table>
         <input type="submit" value="save">
     </form>
-   
+    <div>
+        {% include 'partials/_footer.html' %}
+    </div>
 </body>
 </html>
