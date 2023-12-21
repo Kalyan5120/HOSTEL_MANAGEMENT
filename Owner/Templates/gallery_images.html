@@ -1,5 +1,35 @@
 {% extends 'home_page.html' %}
 {% block content %}
+<hr class="my-4">
+<main>
+  <div class="container">
+  <div class="row">
+    <div class="col-md-7 col-lg-8">
+      <h4 class="mb-3">Hostel Images</h4>
+      <form class="needs-validation" method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+        <div class="row g-5">
+          <div class="">
+          <table >
+            {% for img in images %}
+            <th> <img src="{{img.images.url}}" alt="" height="100" width="75"> 
+            <a href="{% url 'owner:delete_images' pk=img.gallery_id %}"><button>Delete</button></a></th>
+             {% endfor %}
+          </table>
+          </div>
+       
+        <button class="w-100 btn btn-primary btn-lg" type="submit">Continue to Booking</button>
+      </form>
+    </div>
+  </div>
+</div>
+</main>
+<hr class="my-4">
+
+
+
+
+
     <h1>Hostel Images</h1>
     <table border="2">
     
