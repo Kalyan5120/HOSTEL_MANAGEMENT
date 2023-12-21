@@ -1,11 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>comments page</title>
-</head>
-<body>
+{% extends 'home_page.html' %}
+{% block content %}
     <h1>Comments Page</h1>
     <form action="" method="post">
         {% csrf_token %}
@@ -14,5 +8,5 @@
         </table>
         <input type="submit" value="save">
     </form>
-</body>
-</html>
+
+    {% endblock content %}

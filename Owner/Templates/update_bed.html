@@ -1,11 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Update_bed</title>
-</head>
-<body>
+{% extends 'home_page.html' %}
+
+{% block content %}
+<main>
     <h1>Bed_update</h1>
     <form action="" method="post">
         {% csrf_token %}
@@ -14,5 +10,5 @@
         </table>
         <input type="submit" value="update">
     </form>
-</body>
-</html>
+</main>
+{% endblock content%}

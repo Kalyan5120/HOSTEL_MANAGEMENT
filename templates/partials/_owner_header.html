@@ -7,17 +7,13 @@
     <title>Document</title>
     {% endblock %}
 
-
     {% load static %}
     {% load bootstrap5 %}
     {% bootstrap_css %}
     {% bootstrap_javascript %}
-
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Kalam&display=swap" rel="stylesheet">
-    {}
     <style>
 *{
     padding: 0%;
@@ -142,15 +138,25 @@ color: crimson;
         <div ><img id="img1" src="{% static 'images/imagelogo1.jpg.' %}" alt=""></div>
         <div id="name"><h1 id="easy">EASY STAY<sub id="subname">~"WILL SAVE YOUR TIME AND ENERGY"</sub></h1></div>
         <div><img id="menu" src="{% static 'images/bx-menu.svg' %}" alt=""></div>
+        <div id="ggg" >
+            <ol id="ull">
+                
+                <li class="liss"><a href="">About us</a></li>
+                <li class="liss"><a href="{% url 'owner:owner_register'%}">Owner</a></li>
+                
+                <!-- <li class="liss"><a href="">contact us</a></li> -->
+            </ol>
+        </div>
     </div>
    </div>
     <div class="topnav">
         <div class="nav">
-        <a class="active" href="http://127.0.0.1:8000/">Home</a>
+        <a class="active" href="{% url 'owner:myhostels' %}">Home</a>
         <a class="active" href="">About</a>
-        <a class="active" href="{% url 'owner:owner_register' %}">Owner</a>
         <a class="active" href="">Contact</a>
-        <a class="active" href="">Help</a>
+        <a href="{% url 'owner:hostel_details' %}">Add Hostel</a>
+        <a href="{% url 'owner:myhostels' %}">My Hostels</a>
+    <a href="{% url 'owner:owner_logout' %}">Logout</a>
       </div>
     </div>
 
