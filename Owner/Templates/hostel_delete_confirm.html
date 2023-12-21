@@ -1,16 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Hostel Details</h1>
-    <form action="" method="post">
-        <h1>are you sure delete hostel id: {{hostel.hostel_id}}</h1>
-        <h2>hostel Name: {{hostel.hostel_name}}</h2>
-        <input type="submit" value="Delete">
-    </form>
-</body>
-</html>
+{% extends 'home_page.html' %}
+{% block content %}
+<hr class="my-4">
+<main>
+  <div class="container">
+  <div class="row">
+    <div class="col-md-7 col-lg-8">
+      <h4 class="mb-3">Hostel Delete Details</h4>
+      <form class="needs-validation" method="post">
+          {% csrf_token %}
+        <div class="row g-5">
+          <div class="">
+            <h1>are you sure delete hostel id: {{hostel.hostel_id}}</h1>
+            <h2>hostel Name: {{hostel.hostel_name}}</h2>
+          </div>
+       
+        <button class="w-100 btn btn-secondary btn-lg" type="submit">Delete</button>
+      </form>
+    </div>
+  </div>
+</div>
+</main>
+<hr class="my-4">
+{% endblock content %}

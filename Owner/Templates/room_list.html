@@ -1,13 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>List Page</title>
-</head>
-<body>
+{% extends 'home_page.html' %}
+
+{% block content %}
+<main>
     <h1>List Page</h1>
-    {% csrf_token %}
     {% if room_details %}
     <table border="2" cellpadding="5" cellspacing="0">
         <tr>
@@ -69,5 +64,5 @@
              {% endif %}
              <a href="{% url 'owner:room_details'%}"><button>Add Room</button></a>
                    <a href="{% url 'owner:myhostels'%}"><button>Home</button></a>
-</body>
-</html>
+</main>
+{% endblock content %}

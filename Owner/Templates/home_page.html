@@ -3,23 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block title%}
     <title>Home Page</title>
+    {% endblock title%}
     <style>
     </style>
 </head>
 <body>
     <div>
-        {% include 'partials/_header.html' %}
+        {% include 'partials/_owner_header.html' %}
     </div>
-    <h1>Hostels</h1>
-    <form action="" method="post">
-        {% csrf_token %}
-        <a href="{% url 'owner:hostel_details' %}">Add Hostel</a>
-        <a href="{% url 'owner:myhostels' %}">My Hostels</a>
-    </form>
-    <a href="{% url 'owner:owner_logout' %}"><button>Logout</button></a>
+    {% block content%}
+   
+     
+
+    {% endblock content %}
     <div>
-        {% include 'partials/_footer.html' %}
+        {% include 'partials/_owner_footer.html' %}
     </div>
 </body>
 </html>
