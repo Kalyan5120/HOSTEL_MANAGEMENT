@@ -5,23 +5,23 @@
 <hr class="my-4">
   <main>
     <div class="container">
-    <div class="row">
-      <div class="col-md-7 col-lg-8">
-        <h4 class="mb-3">Hostel_Details</h4>
-        <form class="needs-validation" method="post">
-            {% csrf_token %}
-          <div class="row g-5">
-            <div class="">
-            <table >
-             {{form}}
-            </table>
+      <div class="row">
+        <div class="col-md-7 col-lg-8">
+          <h4 class="mb-3">Hostel_Details</h4>
+          <form class="needs-validation" method="post" enctype="multipart/form-data">
+              {% csrf_token %}
+            <div class="row g-5">
+              <div class="">
+                <table >
+                {{form}} 
+                </table>
+              </div>
+              <button class="btn btn-primary btn-lg" type="submit">Continue to Booking</button>
             </div>
-         
-          <button class="btn btn-primary btn-lg" type="submit">Continue to Booking</button>
-        </form>
+          </form>
+        </div>
       </div>
     </div>
-</div>
-</main>
+  </main>
 <hr class="my-4">
 {% endblock content %}

@@ -12,32 +12,15 @@
           <div class="">
           <table >
             {% for img in images %}
-            <th> <img src="{{img.images.url}}" alt="" height="100" width="75"> 
+            <th> <img src="{{img.images.url}}" alt="" height="250" width="275"> <br><br>
             <a href="{% url 'owner:delete_images' pk=img.gallery_id %}"><button>Delete</button></a></th>
              {% endfor %}
           </table>
           </div>
-       
-        <button class="w-100 btn btn-primary btn-lg" type="submit">Continue to Booking</button>
       </form>
     </div>
   </div>
 </div>
 </main>
 <hr class="my-4">
-
-
-
-
-
-    <h1>Hostel Images</h1>
-    <table border="2">
-    
-
-    {% for img in images %}
-    <th> <img src="{{img.images.url}}" alt="" height="100" width="75"> 
-        <a href="{% url 'owner:delete_images' pk=img.gallery_id %}"><button>Delete</button></a></th>
-    {% endfor %}
-</table>
-
 {% endblock content %}

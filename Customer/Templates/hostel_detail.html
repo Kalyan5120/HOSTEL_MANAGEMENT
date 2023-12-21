@@ -27,7 +27,7 @@
     <h2 class="featurette-heading fw-normal lh-1">Hostel Details</h2>
     <div class="row featurette">
       <div class="col-md-7">
-        <table>        
+        <table class="table">        
             <tr><p class="lead">Hostel Name:    <strong>{{hostel.hostel_name|title}}</strong></p></tr>
             <tr><p class="lead">Hostel address: <strong>{{hostel.address|title}}</strong></p></tr>
             <tr><p class="lead">Hostel GST:     <strong>{{hostel.GST|title}}</strong></p></tr>
@@ -35,8 +35,8 @@
             <tr><p class="lead">Hostel type_of_hostel:    <strong>{{hostel.type_of_hostel|title}}</strong></p></tr>
             <tr><p class="lead">Hostel hostel_owner_name: <strong>{{hostel.hostel_owner_name|title}}</strong></p></tr>
             <tr><p class="lead">Hostel owner_phone_no:    <strong>{{hostel.owner_phone_no|title}}</strong></p></tr>
-            <tr><p class="lead">Hostel hostel_owner_name: <strong>{{hostel.owner_email|title}}</strong></p></tr>
-            <tr><p class="lead">Hostel owner_email:       <strong>{{hostel.location|title}}</strong></p></tr>
+            <tr><p class="lead">Hostel owner_email: <strong>{{hostel.owner_email|title}}</strong></p></tr>
+            <tr><p class="lead">Hostel location:       <strong>{{hostel.location|title}}</strong></p></tr>
     </table>
       </div>
       <div class="col-md-5">
@@ -50,7 +50,7 @@
         <table class="table">
             <thead class="thead-dark">
             <tr>
-                <th  scope="col" scope="col" >Room_Details</th>
+                <th scope="col" >Room_Details</th>
             </tr>
             </thead>
             <tbody>

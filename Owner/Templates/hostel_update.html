@@ -1,21 +1,35 @@
 {% extends 'home_page.html' %}
 
 {% block content %}
-    <h1>Hostel Update</h1>
-        <form action="" method="post">
-            {% csrf_token %}
-                <label for="id_name">hostel_name</label>
-                <input type="text" name="name" id="id_name" value="{{form.hostel_name}}"><br>
+<hr class="my-4">
+<main>
+  <div class="container">
+  <div class="row">
+    <div class="col-md-7 col-lg-8">
+      <h4 class="mb-3">Hostel Update</h4>
+      <form class="needs-validation" method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+        <div class="row g-5">
+          <div class=" container">
+            <label for="id_name">hostel_name</label>
+            <input type="text" name="name" id="id_name" value="{{form.hostel_name}}" class="form-control"><br>
 
-                <label for="id_type">hostel_type</label>
-                <input type="text" name="type_of_hostel" id="id_type" value="{{form.type_of_hostel}}"><br>
+            <label for="id_type">hostel_type</label>
+            <input type="text" name="type_of_hostel" id="id_type" value="{{form.type_of_hostel}}" class="form-control"><br>
 
-                <label for="id_phone_no">owner_phone_no</label>
-                <input type="text" name="phone_no" id="id_phone_no" value="{{form.owner_phone_no}}"><br>
+            <label for="id_phone_no">owner_phone_no</label>
+            <input type="text" name="phone_no" id="id_phone_no" value="{{form.owner_phone_no}}" class="form-control"><br>
 
-                <label for="id_email">owner_email</label>
-                <input type="text" name="email" id="id_email" value="{{form.owner_email}}">
-                <br>
-                <input type="submit" value="update">
-        </form>  
+            <label for="id_email">owner_email</label>
+            <input type="text" name="email" id="id_email" value="{{form.owner_email}}" class="form-control">
+            <br>
+            <input type="submit" value="update" class="btn btn-outline-success">
+          </div>
+      </form>
+    </div>
+  </div>
+</div>
+</main>
+<hr class="my-4">
+
 {% endblock content %}

@@ -99,12 +99,14 @@ def changepswrd_view(request,pk):
 @login_required(login_url='/Owner/owner_login')
 def hostel_details_view(request):
     form=hostel_details_form()
-    if request.method=='POST':
-        form=hostel_details_form(request.POST)
+    if request.method=='POST' and request.FILES:
+        print(request.POST)
+        form=hostel_details_form(request.POST, request.FILES)
         if form.is_valid():
             data=form.save(commit=False)
             data.owner_id=request.user.id
             data.hostel_owner_name=request.user.first_name
+            
             if data:
                 form.save()
                 return redirect('/Owner/room_details')
@@ -397,6 +399,8 @@ def approved_room_book_view(request,room,bed,pk):
     return redirect('/Customer/home/')
 
 
-def index(request):
-    return render(request,template_name='index.html')
+def about_view(request):
+    return render(request,template_name='about.html')
     
+def contact_view(request):
+    return render(request,template_name='contact.html')

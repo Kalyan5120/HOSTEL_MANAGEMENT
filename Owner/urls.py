@@ -42,7 +42,9 @@ urlpatterns=[
     path(route='availability/',view=availability_view,name='availability'),
     path(route='booking/<hostel>/<room>/<bed>/<data1>/<data2>/<data3>/',view=owner_book_view,name='booking'),
 
-    path(route='index/',view=index,name='index'),
+    path(route='about/',view=about_view,name='about'),
+    path(route='contact/',view=contact_view,name='contact'),
+
 
     
 

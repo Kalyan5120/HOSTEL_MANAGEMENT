@@ -1,15 +1,29 @@
 {% extends 'home_page.html' %}
 {% block content %}
-    <h1> owner booking to customer</h1>
-    <form action="" method="post">
-        {%csrf_token%}
-        <label for="id_username">Customer name</label>
-        <input type="text" name="username" id="id_username"><br>
+<hr class="my-4">
+<main>
+  <div class="container">
+  <div class="row">
+    <div class="col-md-7 col-lg-8">
+      <h4 class="mb-3"> owner booking to customer</h4>
+      <form class="needs-validation" method="post" >
+          {% csrf_token %}
+        <div class="row g-5">
+          <div class="">
+            <label for="id_username">Customer name</label>
+        <input type="text" name="username" id="id_username" class="form-control"><br>
         <label for="id_username">Phone</label>
-        <input type="text" name="phone" id="id_phone"><br>
+        <input type="text" name="phone" id="id_phone" class="form-control"><br>
         <label for="id_username">Email</label>
-        <input type="email" name="email" id="id_email"><br>
-        <input type="submit" value="Send request">
-    </form>
+        <input type="email" name="email" id="id_email" class="form-control"><br>
+          </div>
+        <button class="w-100 btn btn-primary btn-lg" type="submit">Continue to Send request</button>
+      </form>
+    </div>
+
+  </div>
+</div>
+</main>
+<hr class="my-4">
  
     {% endblock content %}

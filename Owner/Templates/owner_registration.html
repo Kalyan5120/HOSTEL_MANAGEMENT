@@ -3,41 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>owner_Register</title>
+    <title>EASY_STAY</title>
     {% load static %}
-    <link rel="stylesheet" href="{% static 'css/regis.css' %}">
+    <!-- <link rel="stylesheet" href="{% static 'css/regis.css' %}"> -->
     <link rel="shortcut icon" href="{% static 'images/Imagelogo2.jpg' %}">
-    <style>
+    <!-- <style>
      body{
     background-image: url('{% static "images/reg-home.jpg" %}');
     background-repeat: no-repeat;
     background-size:100% 110vh;
 
 }
-    </style>
+    </style> -->
 </head>
 <body>
     <div>
-        {% include 'partials/_header.html' %}
+        {% include 'partials/_owner_header.html' %}
     </div>
 <!-- <marquee id="marquee" direction="right">ESAY_STAY</marquee>  -->
-<div class="main">
-    <h1>Owner registration</h1>
-    <div class="main1">
-      
-        <form action="" method="post" enctype="multipart/form-data">
-            {% csrf_token %}
+
+
+
+<hr class="my-4">
+<main>
+  <div class="container">
+  <div class="row">
+    <div class="col-md-7 col-lg-8">
+      <h4 class="mb-3">Owner registration</h4>
+      <form class="needs-validation" method="post" >
+          {% csrf_token %}
+        <div class="row g-5">
+          <div class="">
             <table>
                 {{form}}
             </table>
-            <br>
-            <input class="btn" type="submit" value="Register">
-        </form>
-        <br>
-            <h3>Already an User?</h3>
-            <br>
-            <a href="{% url  'owner:owner_login' %}"><button class="btn">Login</button></a>
+          </div>
+        <button class="w-100 btn btn-primary btn-lg" type="submit">Register</button>
+      </form>
+      
     </div>
+    <br>
+    <h3>Already an User?</h3>
+    <br>
+    <a href="{% url  'owner:owner_login' %}"><button class="w-100 btn btn-outline-warning btn-lg">Login</button></a>
+  </div>
 </div>
+</main>
+<hr class="my-4">
+
 </body>
 </html>

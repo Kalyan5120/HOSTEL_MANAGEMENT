@@ -47,4 +47,5 @@ class book_room_form(forms.ModelForm):
         adhaar = self.cleaned_data['c_aadhaar']
         if len(str(adhaar))!=12:
             raise forms.ValidationError('aadhaar should contain 12 numbers')
+        
         return adhaar

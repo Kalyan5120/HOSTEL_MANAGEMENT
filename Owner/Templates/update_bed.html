@@ -1,14 +1,26 @@
 {% extends 'home_page.html' %}
 
 {% block content %}
+<hr class="my-4">
 <main>
-    <h1>Bed_update</h1>
-    <form action="" method="post">
-        {% csrf_token %}
-        <table>
-            {{form}}
-        </table>
-        <input type="submit" value="update">
-    </form>
+  <div class="container">
+  <div class="row">
+    <div class="col-md-7 col-lg-8">
+      <h4 class="mb-3">Bed_update</h4>
+      <form class="needs-validation" method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+        <div class="row g-5">
+          <div class="container">
+          <table class="table">
+           {{form}}
+          </table>
+          </div>
+       
+        <button class="w-100 btn btn-primary btn-lg" type="submit">Continue to Update</button>
+      </form>
+    </div>
+  </div>
+</div>
 </main>
+<hr class="my-4">
 {% endblock content%}

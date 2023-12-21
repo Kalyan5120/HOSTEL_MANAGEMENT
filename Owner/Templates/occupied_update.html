@@ -1,12 +1,26 @@
 {% extends 'home_page.html' %}
 
 {% block content %}
-<body>
-    <h1>occupied update</h1>
-    <form action="" method="post">
-        {% csrf_token %} 
-        <table>
-            {{form}}
-        </table>
-    </form>
+<hr class="my-4">
+<main>
+  <div class="container">
+  <div class="row">
+    <div class="col-md-7 col-lg-8">
+      <h4 class="mb-3">occupied update</h4>
+      <form class="needs-validation" method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+        <div class="row g-5">
+          <div class="">
+          <table>
+           {{form}}
+          </table>
+          </div>
+       
+        <button class="w-100 btn btn-primary btn-lg" type="submit">Update</button>
+      </form>
+    </div>
+  </div>
+</div>
+</main>
+<hr class="my-4">
 {% endblock content %}

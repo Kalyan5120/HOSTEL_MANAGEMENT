@@ -1,61 +1,69 @@
 {% extends 'home_page.html' %}
 
 {% block content %}
+<main>
+<div class="">
 <div id="main1">
     <h1 id="name11">My Hostel Details</h1>
     {% if hostel_details %}
     <div id="hstl1">
-    <table border="5" height="100%" width="100%">
+    <table class="table">
+        <thead class="thead-dark">
         <tr style="color:blueviolet;">
-            <th>Hostel Id</th>
-            <th>Hostel name</th>
-            <th>address</th>
-            <th>phone</th>
-            <th>avalibality</th>
-            <th>room_list</th>
-            <th>Gallery</th>
-            <th>Update</th>
-            <th>Delete</th>
+            <th scope="col">Hostel Id</th>
+            <th scope="col">Hostel name</th>
+            <th scope="col">Address</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Avalibality</th>
+            <th scope="col">Room_list</th>
+            <th scope="col">Gallery</th>
+            <th scope="col">Update</th>
+            <th scope="col">Delete</th>
+            <th scope="col"></th>
         </tr>
+    </thead >
+    <tbody>
         
             {% for hostel in hostel_details %}
             <tr>
-            <td>{{hostel.hostel_id}}</td>
-            <td>{{hostel.hostel_name}}</td>
-            <td>{{hostel.address}}</td>
-            <td>{{hostel.owner_phone_no}}</td>
-            <td><table border="2" height="100%" width="100%">
+            <td>{{hostel.hostel_id|title}}</td>
+            <td>{{hostel.hostel_name|title}}</td>
+            <td>{{hostel.address|title}}</td>
+            <td>{{hostel.owner_phone_no|title}}</td>
+            <td><table class="table">
+                <thead class="thead-green">
                 <tr style="color: red;"><th>Total Bed</th>
-                    <th>Created</th>
-                    <th>Not created</th>
+                    <th scope="col">Created</th>
+                    <th scope="col">Not created</th>
                 </tr>
+            </thead>
+            <tbody>
                 <tr>
                 {% for m in available %} {% if m.0 == hostel.hostel_id %}
-                    <td>{{m.1}}</td>
-                    <td>{{m.2}}</td>
-                    <td>{{m.3}}</td>
-                    {% endif %}{% endfor%} </tr> </table></td>
+                    <td>{{m.1|title}}</td>
+                    <td>{{m.2|title}}</td>
+                    <td>{{m.3|title}}</td>
+                    {% endif %}{% endfor%} </tr> 
+                </tbody>
+            </table></td>
             
-            <td><a href="{% url 'owner:hostel_list' pk=hostel.hostel_id %}"><button>Room_list</button></a></td>
+            <td><a href="{% url 'owner:hostel_list' pk=hostel.hostel_id %}"><button class="btn btn-primary">Room_list</button></a></td>
             <td>
-                <a href="{% url 'owner:gallery' pk=hostel.hostel_id %}"><button>AddImages</button></a><br><br>
-                <a href="{% url 'owner:gallery_images' pk=hostel.hostel_id %}"> <button>List images</button></a>
+                <a href="{% url 'owner:gallery' pk=hostel.hostel_id %}"><button class="btn btn-outline-success">AddImages</button></a><br><br>
+                <a href="{% url 'owner:gallery_images' pk=hostel.hostel_id %}"> <button class="btn btn-outline-dark">List images</button></a>
             </td>
-            <td><a href="{% url 'owner:hostel_update' pk=hostel.hostel_id %}"><button>Update</button></a></td>
-            <td><a href="{% url 'owner:hostel_delete' pk=hostel.hostel_id %}"><button>Delete</button></a></td>
-            <td>
-            {% for i in images %}
-                {% if i.hostel_id == hostel.hostel_id %}
-                    <img src="{{i.images.url}}" alt="" height="250px" width="350px">
-                {% endif %}
-            {% endfor %}
-        </td>
+            <td><a href="{% url 'owner:hostel_update' pk=hostel.hostel_id %}"><button class="btn btn-outline-warning">Update</button></a></td>
+            <td><a href="{% url 'owner:hostel_delete' pk=hostel.hostel_id %}"><button class="btn btn-outline-danger">Delete</button></a></td>
+            <td> <img src="{{hostel.image.url}}" alt="" height="150px" width="250px"></td>
         </tr>
             {% endfor %}
+    </tbody>
     </table>
     </div>
     {% else %}
 </div>
     <h3>Data is not found</h3>
     {% endif %}
+</div>
+</main>
 {% endblock content %}

@@ -5,13 +5,13 @@
   <div class="container">
   <div class="row">
     <div class="col-md-7 col-lg-8">
-      <h4 class="mb-3">Hostel Delete Details</h4>
+      <h2 class="mb-3">Hostel Delete Details</h2>
       <form class="needs-validation" method="post">
           {% csrf_token %}
         <div class="row g-5">
           <div class="">
-            <h1>are you sure delete hostel id: {{hostel.hostel_id}}</h1>
-            <h2>hostel Name: {{hostel.hostel_name}}</h2>
+            <h3>are you sure delete hostel id: {{hostel.hostel_id}}</h3>
+            <h3>hostel Name: {{hostel.hostel_name}}</h3>
           </div>
        
         <button class="w-100 btn btn-secondary btn-lg" type="submit">Delete</button>

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% block title %}
-    <title>Document</title>
+    <title>ESAY_STAY</title>
     {% endblock %}
 
 
@@ -141,15 +141,15 @@ color: crimson;
     <div id="main">
         <div ><img id="img1" src="{% static 'images/imagelogo1.jpg.' %}" alt=""></div>
         <div id="name"><h1 id="easy">EASY STAY<sub id="subname">~"WILL SAVE YOUR TIME AND ENERGY"</sub></h1></div>
-        <div><img id="menu" src="{% static 'images/bx-menu.svg' %}" alt=""></div>
+        <!-- <div><img id="menu" src="{% static 'images/bx-menu.svg' %}" alt=""></div> -->
     </div>
    </div>
     <div class="topnav">
         <div class="nav">
         <a class="active" href="http://127.0.0.1:8000/">Home</a>
-        <a class="active" href="">About</a>
+        <a class="active" href="{% url 'owner:about' %}">About</a>
         <a class="active" href="{% url 'owner:owner_register' %}">Owner</a>
-        <a class="active" href="">Contact</a>
+        <a class="active" href="{% url 'owner:contact' %}">Contact</a>
         <a class="active" href="">Help</a>
       </div>
     </div>

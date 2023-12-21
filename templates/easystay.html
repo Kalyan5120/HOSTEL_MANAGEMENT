@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>EASY_STAY</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/home.css'  %}">
     <link rel="shortcut icon" href="{% static 'images/Imagelogo2.jpg' %}">
@@ -84,6 +84,29 @@
     margin-left:5%;
 }
 
+.abt{
+  font-size: larger;
+  font-weight: 600;
+  font-style: italic;
+  
+}
+
+#about{
+  text-align:justify;
+  padding-left: 7%;
+  padding-top: 2%
+}
+#hostel{
+  margin-left: 62%;
+  margin-top: -670px;
+}
+#contact{
+        font-style: italic;
+        font-size: x-large;
+        font-weight: bold;
+        padding-left: 8%;
+    }
+
 </style>
 </head>
 <body>
@@ -101,7 +124,7 @@
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
         <div class="col">
           <div class="card shadow-sm">
-            <img src="{{i.image.url}}" alt="" class="bd-placeholder-img card-img-top" height="100%" width="100%"/>
+            <img src="{{i.image.url}}" alt="" class="bd-placeholder-img card-img-top" height="400px" width="450px"/>
             <div class="card-body">
               <p class="card-text">Hostel Name: {{i.hostel_name|title}}</p>
               <p class="card-text">Location :  {{i.location|title}}</p>
@@ -114,7 +137,7 @@
                 <div class="btn-group">
                   <a href="{% url 'customer:hostel_detail' pk=i.hostel_id %}"><button type="button" class="btn btn-sm btn-outline-secondary">Book</button></a>
                 </div>
-                <small class="text-body-secondary">9 mins</small>
+                <!-- <small class="text-body-secondary">9 mins</small> -->
               </div>
             </div>
           </div>
@@ -126,7 +149,6 @@
 </div>
 </main>
 {% endblock body-content %}
-
 <footer>
   {% include 'partials/_footer.html' %}
 </footer>

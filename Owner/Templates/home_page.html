@@ -3,19 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    {% block title%}
-    <title>Home Page</title>
-    {% endblock title%}
+ {% load static %}
+    <title>EASY_STAY</title>
+    <link rel="shortcut icon" href="{% static 'images/Imagelogo2.jpg' %}">
+
     <style>
     </style>
 </head>
 <body>
     <div>
-        {% include 'partials/_owner_header.html' %}
+        {% include 'partials/_owner_head.html' %}
     </div>
     {% block content%}
    
-     
+
+     <div>
+        <img src="{% static 'images/hostelbuild.jpg' %}" alt="" height="500px" width="700px">
+        <img src="{% static 'images/hostelbuild2.jpg' %}" alt="" height="500px" width="700px">
+     </div>
 
     {% endblock content %}
     <div>

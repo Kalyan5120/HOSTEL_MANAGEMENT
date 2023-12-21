@@ -141,12 +141,12 @@ color: crimson;
    </div>
     <div class="topnav">
         <div class="nav">
-            <a class="active" href="http://127.0.0.1:8000/">Home</a>
-            <a class="active" href="{% url 'owner:about' %}">About</a>
-            <a class="active" href="{% url 'owner:owner_register' %}">Registration</a>
-            <a class="active" href="{% url 'owner:owner_login' %}">Login</a>
-            <a class="active" href="{% url 'owner:contact' %}">Contact</a>
-            <a class="active" href="">Help</a>
+        <a class="active" href="{% url 'owner:home' %}">Home</a>
+        <a class="active" href="{% url 'owner:about' %}">About</a>
+        <a class="active" href="{% url 'owner:contact' %}">Contact</a>
+        <a href="{% url 'owner:hostel_details' %}">Add Hostel</a>
+        <a href="{% url 'owner:myhostels' %}">My Hostels</a>
+    <a href="{% url 'owner:owner_logout' %}">Logout</a>
       </div>
     </div>
 

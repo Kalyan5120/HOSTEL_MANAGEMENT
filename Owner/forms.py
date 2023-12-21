@@ -85,6 +85,12 @@ class Owner_login(forms.Form):
     username=forms.CharField(max_length=50)
     password=forms.CharField(widget=forms.PasswordInput)
 
+    def __init__(self,*args,**kwargs):
+        super(Owner_login,self).__init__(*args,**kwargs)
+        for field in self.fields.values():
+            field.widget.attrs['class']='form-control'
+            field.widget.attrs['place']="Enter "+str(field.label)
+
     def clean_username(self):
         username = self.cleaned_data['username']
         if not(username[0].isupper()):
@@ -116,6 +122,12 @@ class changepswrd_form(forms.Form):
     enter_new_password=forms.CharField(widget=forms.PasswordInput,validators=[clean_enter_new_password,])
     reenter_new_password=forms.CharField(widget=forms.PasswordInput)
 
+    def __init__(self,*args,**kwargs):
+        super(changepswrd_form,self).__init__(*args,**kwargs)
+        for field in self.fields.values():
+            field.widget.attrs['class']='form-control'
+            field.widget.attrs['place']="Enter "+str(field.label)
+
     def clean_reenter_new_password(self):
             print("how")
             pswrd=self.cleaned_data['reenter_new_password']
@@ -137,7 +149,14 @@ class changepswrd_form(forms.Form):
 class hostel_details_form(forms.ModelForm):
     class Meta:
         model=hostel_details_model
-        exclude=['owner_id','hostel_owner_name','owner_email','owner_phone_no']
+        exclude=['owner_id','hostel_owner_name']
+     
+    def __init__(self,*args,**kwargs):
+        super(hostel_details_form,self).__init__(*args,**kwargs)
+        for field in self.fields.values():
+            field.widget.attrs['class']='form-control'
+            field.widget.attrs['place']="Enter "+str(field.label)
+
     
     def clean_owner_phone_cdno(self):
         phoneno = self.cleaned_data['owner_phone_no']
@@ -152,21 +171,36 @@ class gallery_form(forms.ModelForm):
     class Meta:
         model=gallery_model
         fields=['images']
+    def __init__(self,*args,**kwargs):
+        super(gallery_form,self).__init__(*args,**kwargs)
+        for field in self.fields.values():
+            field.widget.attrs['class']='form-control'
+            field.widget.attrs['place']="Enter "+str(field.label)
 
 class comments_form(forms.ModelForm):
     class Meta:
         model=comments_model
         fields='__all__'
+    def __init__(self,*args,**kwargs):
+        super(comments_form,self).__init__(*args,**kwargs)
+        for field in self.fields.values():
+            field.widget.attrs['class']='form-control'
+            field.widget.attrs['place']="Enter "+str(field.label)
+
 
 class room_details_form(forms.ModelForm):
     class Meta:
         model=rooms_details_model
         fields='__all__'
-    
+
     def __init__(self,*args,**kwargs):
         hostel=kwargs.pop('hostel',None)
         super(room_details_form,self).__init__(*args,**kwargs)
         self.fields['hostel_id']=forms.ModelChoiceField(queryset=hostel_details_model.objects.filter(owner_id=hostel))
+
+        for field in self.fields.values():
+            field.widget.attrs['class']='form-control'
+            field.widget.attrs['place']="Enter "+str(field.label)
 
     def clean_room_no(self):
         room=self.cleaned_data['room_no']
@@ -179,10 +213,15 @@ class room_update_form(forms.ModelForm):
     class Meta:
         model=rooms_details_model
         fields='__all__'
+
     def __init__(self,*args,**kwargs):
         hostel=kwargs.pop('hostel',None)
         super(room_update_form,self).__init__(*args,**kwargs)
         self.fields['hostel_id']=forms.ModelChoiceField(queryset=hostel_details_model.objects.filter(owner_id=hostel))
+
+        for field in self.fields.values():
+            field.widget.attrs['class']='form-control'
+            field.widget.attrs['place']="Enter "+str(field.label)
 
 
 class bed_details_form(forms.ModelForm):
@@ -194,6 +233,12 @@ class bed_details_form(forms.ModelForm):
         hostel=kwargs.pop('hostel',None)
         super(bed_details_form,self).__init__(*args,**kwargs)
         self.fields['room_no']=forms.ModelChoiceField(queryset=rooms_details_model.objects.filter(hostel_id=hostel))
+
+        for field in self.fields.values():
+            field.widget.attrs['class']='form-control'
+            field.widget.attrs['place']="Enter "+str(field.label)
+        
+        self.fields['availability'].widget.attrs['class']=""
     
     def clean(self):
         room=(rooms_details_model.objects.get(room_id=self.data['room_no']))
@@ -210,10 +255,17 @@ class bed_update_form(forms.ModelForm):
         model=bed_details_model
         fields=['bed_no','bed_cost','availability']
 
+
 class occupied_details_form(forms.ModelForm):
     class Meta:
         model=occupied_details_model
         fields='__all__'
+    
+    def __init__(self,*args,**kwargs):
+        super(occupied_details_form,self).__init__(*args,**kwargs)
+        for field in self.fields.values():
+            field.widget.attrs['class']='form-control'
+            field.widget.attrs['place']="Enter "+str(field.label)
 
     def clean_phoneno(self):
         phoneno = self.cleaned_data['phone_no']

@@ -2,67 +2,76 @@
 
 {% block content %}
 <main>
+    <div class="container">
     <h1>List Page</h1>
     {% if room_details %}
-    <table border="2" cellpadding="5" cellspacing="0">
+    <table class="table" border="2">
+        <thead class="thead-dark">
         <tr>
-            <th>Hostel_Name</th>
-            <th>Room_Details</th>
+            <th scope="col">Hostel_Name</th>
+            <th scope="col">Room_Details</th>
         </tr>
-            
+    </thead>
+    <tbody>
             <tr>
-                <td>{{hostel_details.hostel_name}}</td>
+                <td><strong>{{hostel_details.hostel_name|title}}</strong></td>
                 <td>
-                    <table border="2" cellpadding="5" cellspacing="0">
+                    <table class="table" border="2">
                         <tr>
-                            <th>Room_num</th>
-                            <th>Bed Details </th>
+                            <th scope="col">Room_num</th>
+                            <th scope="col">Bed Details </th>
                         </tr>
                         {% for j in room_details %}
                         <tr>
-                            <td>{{j.room_no}} <br>
-                                total_beds: {{j.num_of_beds}}<br>
-                                <a href="{% url 'owner:room_update' pk=j.room_id %}"><button>Update</button></a><br>
-                                <a href="{% url 'owner:room_delete' pk=j.room_id %}"><button>delete</button></a><br>
+                            <td><strong>{{j.room_no}}</strong> <br>
+                                Total_beds:<strong>{{j.num_of_beds}}</strong><br><br>
+                                <a href="{% url 'owner:room_update' pk=j.room_id %}"><button class="btn btn-outline-warning">Update</button></a><br><br>
+                                <a href="{% url 'owner:room_delete' pk=j.room_id %}"><button class="btn btn-outline-danger">delete</button></a><br>
 
                             </td>
                             <td>
-                            <table border="2">
+                            <table border="2" class="table">
+                                <thead class="thead-dark">
                                 <tr>
-                                        <th>Bed_num</th>
-                                        <th>Cost</th>
-                                        <th>Availability</th>
-                                        <th>Update</th>
-                                        <th>Delete</th>
+                                        <th scope="col">Bed_num</th>
+                                        <th scope="col">Cost</th>
+                                        <th scope="col">Availability</th>
+                                        <th scope="col">Update</th>
+                                        <th scope="col">Delete</th>
 
                                 </tr>
+                                </thead>
+                                <tbody>
                                 {% for k in bed_details %}
                                 {% if j == k.room_no %}
                                 <tr>
                                     <td>{{k.bed_no}}</td>
                                     <td>{{k.bed_cost}}</td>
-                                    <td>{% if k.availability %} <a href="{% url 'owner:booking' hostel=hostel_details.hostel_id room=j.room_id bed=k.bed_id data1=hostel_details.hostel_name data2=j.room_no data3=k.bed_no %}"><button>Book</button></a> {% else %} <h4>booked</h4> {% endif %}</td>
-                                    <td><a href="{% url 'owner:bed_update' pk=k.bed_id%}"><button>Update</button></a></td>
-                                    <td><a href="{% url 'owner:bed_delete' pk=k.bed_id%}"><button>Delete</button></a></td>
+                                    <td>{% if k.availability %} <a href="{% url 'owner:booking' hostel=hostel_details.hostel_id room=j.room_id bed=k.bed_id data1=hostel_details.hostel_name data2=j.room_no data3=k.bed_no %}"><button class="btn btn-outline-primary">Book</button></a> {% else %} <h5>booked</h5> {% endif %}</td>
+                                    <td><a href="{% url 'owner:bed_update' pk=k.bed_id%}"><button class="btn btn-outline-warning">Update</button></a></td>
+                                    <td><a href="{% url 'owner:bed_delete' pk=k.bed_id%}"><button class="btn btn-outline-danger">Delete</button></a></td>
                                     
                                 </tr>
                                 {% endif %}
                                 {% endfor %}
-                                
+                            </tbody>
                             </table>
                             </td>   
                         </tr>
                         {% endfor %}
-                        <a href="{% url 'owner:bed_details' pk=hostel_details.hostel_id %}"><button>Add Bed</button></a>
+                        <a href="{% url 'owner:bed_details' pk=hostel_details.hostel_id %}"><button class="btn btn-secondary">Add Bed</button></a>
                    </table>
                    
                 </td>             
             </tr>
+        </tbody>
     </table>
             {% else %}
             <h3>Room details is not avaliable</h3>
              {% endif %}
-             <a href="{% url 'owner:room_details'%}"><button>Add Room</button></a>
-                   <a href="{% url 'owner:myhostels'%}"><button>Home</button></a>
+             <a href="{% url 'owner:room_details'%}"><button class="btn btn-success">Add Room</button></a>
+                   <a href="{% url 'owner:myhostels'%}"><button class="btn btn-primary">Home</button></a>
+
+</div>
 </main>
 {% endblock content %}

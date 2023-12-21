@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>owner_login</title>
+    <title>EASY_STAY</title>
     {% load static %}
-    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <!-- <link rel="stylesheet" href="{% static 'css/login.css' %}"> -->
     <link rel="shortcut icon" href="{% static 'images/Imagelogo2.jpg' %}">
-    <style>
+    <!-- <style>
         body{
 
     background-image: url('{% static "images/login..jpg" %}');
@@ -15,31 +15,40 @@
     background-size:100% 110vh;
 
 }
-    </style>
+    </style> -->
     
 </head>
 <body>
     <div>
-        {% include 'partials/_header.html' %}
+        {% include 'partials/_owner_header.html' %}
     </div>
-    <div>
-        <div id="login">
-            <h1>Owner login</h1>
-            <div id="sub_log">
-           
-        <form action="" method="post">
-            {% csrf_token %}
+
+    <hr class="my-4">
+<main>
+  <div class="container">
+  <div class="row">
+    <div class="col-md-7 col-lg-8">
+      <h4 class="mb-3">Owner login</h4>
+      <form class="needs-validation" method="post" >
+          {% csrf_token %}
+        <div class="row g-5">
+          <div class="">
             <table>
                 {{form}}
+                <input type="hidden" name="hid" value="{{hostel_id}}">
             </table>
-            <input class="button" type="submit" value="login"><br>
-            <a href="{% url 'owner:forgetpswrd' %}">Forget password?</a>
-        </form>
-        
-        <h3>New user?</h3>
-        <a href="{% url 'owner:owner_register' %}"><button class="button">Register</button></a>
-            </div>
-        </div>
+          </div>
+        <button class="w-100 btn btn-primary btn-lg" type="submit">Continue to Login</button>
+      </form>
     </div>
+    <a href="{% url 'owner:forgetpswrd' %}">Forget password?</a>
+  </div>
+  <h3>New user?</h3>
+    <a href="{% url 'owner:owner_register' %}"><button class="w-100 btn btn-outline-warning btn-lg" >Register</button></a>
+</div>
+</main>
+<hr class="my-4">
+
+    
 </body>
 </html>

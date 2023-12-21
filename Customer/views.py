@@ -64,8 +64,8 @@ def room_book_view(request,hostel,room,bed,data1,data2,data3):
                 link: http://127.0.0.1:8000/Customer/approved_book/{data.room_id}/{data.bed_id}/{data.id}/
                 '''
                 send_mail(subject=subject,message=msg,from_email=settings.EMAIL_HOST_USER,recipient_list=[settings.EMAIL_HOST_USER,])
-                messages.success("To sent the email approval from owner")
-                return redirect('/Customer/home/')
+                messages.success(request,"To sent the email approval from owner")
+                # return redirect('/easy')
     return render(request=request,template_name='book_room.html',context={'form':form})
 
 
@@ -85,5 +85,5 @@ def approved_room_book_view(request,room,bed,pk):
         messages.success(request,"successfully approval")
     else:
         messages.success(request,"approval failed")
-    return redirect('/Customer/home/')
+    return redirect('/easy')
     
