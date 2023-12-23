@@ -43,6 +43,7 @@ urlpatterns=[
     path(route='booking/<hostel>/<room>/<bed>/<data1>/<data2>/<data3>/',view=owner_book_view,name='booking'),
 
     path(route='about/',view=about_view,name='about'),
+    path(route='owner_about/',view=owner_about_view,name='owner_about'),
     path(route='contact/',view=contact_view,name='contact'),
 
 
